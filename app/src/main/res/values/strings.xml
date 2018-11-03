@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">TodoForStudy</string>
+    <string name="menu_add">Add a new Mission</string>
+</resources>
