@@ -5,23 +5,23 @@ import java.util.List;
 
 public class Project {
 
-    private Date time;
-    private List<String> thePlan;
+    private String time;
+    private String thePlan;
 
 
-    public Date getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(Date time) {
+    public void setTime(String time) {
         this.time = time;
     }
 
-    public List<String> getThePlan() {
+    public String getThePlan() {
         return thePlan;
     }
 
-    public void setThePlan(List<String> thePlan) {
+    public void setThePlan(String thePlan) {
         this.thePlan = thePlan;
     }
 }

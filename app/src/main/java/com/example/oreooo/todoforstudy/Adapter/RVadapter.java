@@ -14,7 +14,7 @@ import com.example.oreooo.todoforstudy.R;
 import java.util.List;
 import java.util.zip.Inflater;
 
-public class RVadapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
+public class RVadapter extends RecyclerView.Adapter<RVadapter.RVHolder>{
 
     Context mContext;
     List<Project> items;
@@ -27,15 +27,16 @@ public class RVadapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
     @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+    public RVadapter.RVHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         LayoutInflater inflater = LayoutInflater.from(mContext);
         View view = inflater.inflate(R.layout.item_rv, viewGroup, false);
         return new RVHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(@NonNull RVadapter.RVHolder viewHolder, int i) {
 
+        viewHolder.bindViewHolder(items.get(i));
     }
 
     @Override
@@ -44,16 +45,20 @@ public class RVadapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     }
 
     public class RVHolder extends RecyclerView.ViewHolder{
-
+        Project mProject;
         TextView time;
         TextView description;
 
         public RVHolder(View view){
             super(view);
-            this.time = view.findViewById(R.id.rv_item_time);
-            this.description = view.findViewById(R.id.rv_item_description);
+            time = (TextView) view.findViewById(R.id.rv_item_time);
+            description = (TextView) view.findViewById(R.id.rv_item_description);
         }
 
-
+        public void bindViewHolder(Project project) {
+            mProject = project;
+            time.setText(mProject.getTime());
+            description.setText(mProject.getThePlan());
+        }
     }
 }
