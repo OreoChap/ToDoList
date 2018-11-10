@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.oreooo.todoforstudy.Adapter.RVadapter;
+import com.example.oreooo.todoforstudy.Date.ProjectLab;
 import com.example.oreooo.todoforstudy.Project;
 import com.example.oreooo.todoforstudy.R;
 
@@ -40,17 +41,11 @@ public class PlanFragment extends Fragment{
         return view;
     }
 
-    public void upDateUI(Project project) {
-        if (mList == null) {
-            mList = new ArrayList<>();
-            mList.add(project);
-        } else if (mList.size() > 0) {
-            mList.add(project);
-        }
-        if (rVadapter == null) {
-            rVadapter = new RVadapter(mList, mContext);
-            rV.setAdapter(rVadapter);
-        }
+    public void upDateUI() {
+        mList = new ArrayList<>();
+        mList = ProjectLab.get(mContext).getProjects();
+        rVadapter = new RVadapter(mList, mContext);
+        rV.setAdapter(rVadapter);
         rVadapter.notifyDataSetChanged();
     }
 }

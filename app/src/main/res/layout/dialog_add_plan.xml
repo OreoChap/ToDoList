@@ -5,12 +5,15 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <!-- 时间输入(暂不需要)
     <EditText
         android:id="@+id/time_edit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="请输入时间"
         />
+     -->
+
 
     <EditText
         android:id="@+id/description_edit"
@@ -18,8 +21,6 @@
         android:layout_height="wrap_content"
 
         android:hint="请输入描述"
-
-        app:layout_constraintTop_toBottomOf="@id/time_edit"
         />
 
 </android.support.constraint.ConstraintLayout>
