@@ -50,9 +50,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initFragment() {
-        PlanFragment fragment = new PlanFragment();
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragment_container, fragment)
+                .replace(R.id.fragment_container, PlanFragment.newInstance())
                 .commit();
     }
 
