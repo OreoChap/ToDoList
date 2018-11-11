@@ -4,18 +4,13 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <CheckBox
-        android:id="@+id/rv_item_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        />
+
 
     <TextView
         android:id="@+id/rv_item_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        app:layout_constraintLeft_toRightOf="@id/rv_item_button"
         android:hint="这是时间"
         >
 
@@ -32,13 +27,21 @@
         app:layout_constraintLeft_toLeftOf="@id/rv_item_time"
         >
 
+        <CheckBox
+            android:id="@+id/rv_item_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
 
-        <android.support.v7.widget.AppCompatTextView
+        <TextView
             android:id="@+id/rv_item_description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
 
+            app:layout_constraintLeft_toRightOf="@id/rv_item_button"
+            app:layout_constraintTop_toTopOf="@id/rv_item_button"
+            app:layout_constraintBottom_toBottomOf="@id/rv_item_button"
             android:hint="这是描述"
             />
 
@@ -51,8 +54,7 @@
 
             app:layout_constraintTop_toTopOf="@id/rv_item_description"
             app:layout_constraintBottom_toBottomOf="@id/rv_item_description"
-            app:layout_constraintRight_toRightOf="@id/rv_item_description"
-            android:visibility="gone"
+            app:layout_constraintLeft_toRightOf="@id/rv_item_button"
             />
 
     </android.support.constraint.ConstraintLayout>

@@ -13,6 +13,8 @@ import android.view.View;
 import android.widget.EditText;
 import com.example.oreooo.todoforstudy.Date.ProjectLab;
 import com.example.oreooo.todoforstudy.Fragment.PlanFragment;
+
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 
@@ -80,7 +82,8 @@ public class MainActivity extends AppCompatActivity {
                                     return;
                                 }
                                 Date d = new Date();
-                                String timeInput = d.toLocaleString();
+                                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                                String timeInput = sdf.format(d);
                                 Project p = new Project(timeInput, descriptionInput);
                                 ProjectLab.get(MainActivity.this).addProject(p);
                                 fragmentUpdate();

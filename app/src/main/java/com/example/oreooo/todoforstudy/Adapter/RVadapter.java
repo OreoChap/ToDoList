@@ -58,7 +58,7 @@ public class RVadapter extends RecyclerView.Adapter<RVadapter.RVHolder>{
     class RVHolder extends RecyclerView.ViewHolder implements CheckBox.OnCheckedChangeListener{
         Project mProject;
         TextView time;
-        AppCompatTextView description;
+        TextView description;
         CheckBox button;
         View line;
         Context mContext;
@@ -66,7 +66,7 @@ public class RVadapter extends RecyclerView.Adapter<RVadapter.RVHolder>{
         RVHolder(View view, Context context){
             super(view);
             time = (TextView) view.findViewById(R.id.rv_item_time);
-            description = (AppCompatTextView) view.findViewById(R.id.rv_item_description);
+            description = (TextView) view.findViewById(R.id.rv_item_description);
             button = (CheckBox) view.findViewById(R.id.rv_item_button);
             line = (View) view.findViewById(R.id.rv_time_line);
             mContext = context;
