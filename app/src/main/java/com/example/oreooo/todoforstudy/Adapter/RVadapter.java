@@ -1,6 +1,7 @@
 package com.example.oreooo.todoforstudy.Adapter;
 
 import android.content.Context;
+import android.graphics.Paint;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatTextView;
@@ -90,12 +91,12 @@ public class RVadapter extends RecyclerView.Adapter<RVadapter.RVHolder>{
             description.setText(mProject.getThePlan());
             switch (mProject.getDone()) {
                 case 1:
-                    //line.setVisibility(View.VISIBLE);
+                    description.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
                     setColor(R.color.rv_item_gray);
                     button.setChecked(true);
                     break;
                 case 2:
-                   // line.setVisibility(View.GONE);
+                    description.getPaint().setFlags(0);
                     setColor(R.color.rv_item_black);
                     button.setChecked(false);
                 default:
@@ -113,12 +114,12 @@ public class RVadapter extends RecyclerView.Adapter<RVadapter.RVHolder>{
         @Override
         public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
             if (b == true) {
-               // line.setVisibility(View.VISIBLE);
+                description.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
                 setColor(R.color.rv_item_gray);
                 mProject.setDone(1);
                 ProjectLab.get(mContext).updateProject(mProject);
             } else {
-               // line.setVisibility(View.GONE);
+                description.getPaint().setFlags(0);
                 setColor(R.color.rv_item_black);
                 mProject.setDone(2);
                 ProjectLab.get(mContext).updateProject(mProject);
