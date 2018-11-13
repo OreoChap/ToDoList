@@ -22,7 +22,7 @@ import java.util.List;
 public class PlanFragment extends Fragment{
 
     RecyclerView rV;
-    List<Project> mList;
+    List<Project> mList = new ArrayList<>();
     RVadapter rVadapter;
     Context mContext;
 
@@ -42,7 +42,6 @@ public class PlanFragment extends Fragment{
     }
 
     public void upDateUI() {
-        mList = new ArrayList<>();
         mList = ProjectLab.get(mContext).getProjects();
         rVadapter = new RVadapter(mList, mContext);
         rV.setAdapter(rVadapter);

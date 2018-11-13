@@ -2,6 +2,7 @@ package com.example.oreooo.todoforstudy.Adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -43,7 +44,17 @@ public class RVadapter extends RecyclerView.Adapter<RVadapter.RVHolder>{
     @Override
     public void onBindViewHolder(@NonNull RVadapter.RVHolder viewHolder, int i) {
         Project project = items.get(i);
-        viewHolder.bindViewHolder(project);
+        if (i > 0) {
+            Project first = items.get(i - 1);
+            Project last = items.get(i);
+            if (first.getTime().equals(last.getTime())) {
+                viewHolder.bindViewHolder(last, true);
+            } else {
+                viewHolder.bindViewHolder(last, false);
+            }
+        } else {
+            viewHolder.bindViewHolder(project, false);
+        }
     }
 
     @Override
@@ -72,20 +83,30 @@ public class RVadapter extends RecyclerView.Adapter<RVadapter.RVHolder>{
             mContext = context;
         }
 
-        void bindViewHolder(Project project) {
+
+        void bindViewHolder(Project project, boolean isSameTime) {
             mProject = project;
             time.setText(mProject.getTime());
             description.setText(mProject.getThePlan());
             switch (mProject.getDone()) {
                 case 1:
                     line.setVisibility(View.VISIBLE);
+                    setColor(R.color.rv_item_gray);
                     button.setChecked(true);
                     break;
                 case 2:
                     line.setVisibility(View.GONE);
+                    setColor(R.color.rv_item_black);
                     button.setChecked(false);
                 default:
             }
+
+            if (isSameTime == true) {
+                time.setVisibility(View.GONE);
+            } else if (isSameTime == false) {
+                time.setVisibility(View.VISIBLE);
+            }
+
             button.setOnCheckedChangeListener(this);
         }
 
@@ -93,13 +114,19 @@ public class RVadapter extends RecyclerView.Adapter<RVadapter.RVHolder>{
         public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
             if (b == true) {
                 line.setVisibility(View.VISIBLE);
+                setColor(R.color.rv_item_gray);
                 mProject.setDone(1);
                 ProjectLab.get(mContext).updateProject(mProject);
             } else {
                 line.setVisibility(View.GONE);
+                setColor(R.color.rv_item_black);
                 mProject.setDone(2);
                 ProjectLab.get(mContext).updateProject(mProject);
             }
+        }
+
+        private void setColor(int color) {
+            description.setTextColor(mContext.getResources().getColor(color));
         }
     }
 }

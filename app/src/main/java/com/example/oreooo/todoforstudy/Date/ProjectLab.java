@@ -40,6 +40,12 @@ public class ProjectLab {
                 null, values);
     }
 
+    public void insertProject(Project p) {
+        ContentValues values = getContentValues(p);
+
+
+    }
+
     public void updateProject(Project p) {
         String uuidString = p.getUuid().toString();
         ContentValues values = getContentValues(p);
@@ -92,7 +98,7 @@ public class ProjectLab {
         Cursor cursor = mDatebase.query(
                 NAME, null,
                 whereClause, whereArgs,
-                null, null, null);
+                null, null, "_id DESC");
         return new ProjectCursorWrapper(cursor);
     }
 
