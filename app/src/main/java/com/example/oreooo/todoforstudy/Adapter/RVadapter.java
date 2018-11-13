@@ -79,7 +79,7 @@ public class RVadapter extends RecyclerView.Adapter<RVadapter.RVHolder>{
             time = (TextView) view.findViewById(R.id.rv_item_time);
             description = (TextView) view.findViewById(R.id.rv_item_description);
             button = (CheckBox) view.findViewById(R.id.rv_item_button);
-            line = (View) view.findViewById(R.id.rv_time_line);
+            //line = (View) view.findViewById(R.id.rv_time_line);
             mContext = context;
         }
 
@@ -90,12 +90,12 @@ public class RVadapter extends RecyclerView.Adapter<RVadapter.RVHolder>{
             description.setText(mProject.getThePlan());
             switch (mProject.getDone()) {
                 case 1:
-                    line.setVisibility(View.VISIBLE);
+                    //line.setVisibility(View.VISIBLE);
                     setColor(R.color.rv_item_gray);
                     button.setChecked(true);
                     break;
                 case 2:
-                    line.setVisibility(View.GONE);
+                   // line.setVisibility(View.GONE);
                     setColor(R.color.rv_item_black);
                     button.setChecked(false);
                 default:
@@ -113,12 +113,12 @@ public class RVadapter extends RecyclerView.Adapter<RVadapter.RVHolder>{
         @Override
         public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
             if (b == true) {
-                line.setVisibility(View.VISIBLE);
+               // line.setVisibility(View.VISIBLE);
                 setColor(R.color.rv_item_gray);
                 mProject.setDone(1);
                 ProjectLab.get(mContext).updateProject(mProject);
             } else {
-                line.setVisibility(View.GONE);
+               // line.setVisibility(View.GONE);
                 setColor(R.color.rv_item_black);
                 mProject.setDone(2);
                 ProjectLab.get(mContext).updateProject(mProject);
