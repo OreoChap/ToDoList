@@ -5,9 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.CursorWrapper;
 import android.database.sqlite.SQLiteDatabase;
-
 import com.example.oreooo.todoforstudy.Project;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -38,12 +36,6 @@ public class ProjectLab {
 
         mDatebase.insert(NAME,
                 null, values);
-    }
-
-    public void insertProject(Project p) {
-        ContentValues values = getContentValues(p);
-
-
     }
 
     public void updateProject(Project p) {

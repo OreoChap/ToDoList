@@ -4,7 +4,6 @@ import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -57,14 +56,8 @@ public class MainActivity extends AppCompatActivity {
                 .commit();
     }
 
-
-    /**
-     * 菜单栏添加PLAN 按钮的Dialog 初始化
-     */
-
     private void showAddDialog() {
         final AlertDialog.Builder mDialog = new AlertDialog.Builder(MainActivity.this);
-
         final View view = LayoutInflater.from(this)
                 .inflate(R.layout.dialog_add_plan, null);
         dEdit = view.findViewById(R.id.description_edit);

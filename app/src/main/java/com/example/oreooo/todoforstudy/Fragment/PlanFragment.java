@@ -10,12 +10,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.example.oreooo.todoforstudy.Adapter.RVadapter;
 import com.example.oreooo.todoforstudy.Date.ProjectLab;
 import com.example.oreooo.todoforstudy.Project;
 import com.example.oreooo.todoforstudy.R;
-
 import java.util.ArrayList;
 import java.util.List;
 

@@ -1,7 +1,5 @@
 package com.example.oreooo.todoforstudy;
 
-import java.util.Date;
-import java.util.List;
 import java.util.UUID;
 
 public class Project {
@@ -15,12 +13,12 @@ public class Project {
         this(UUID.randomUUID());
     }
 
-    public Project (UUID id) {
+    public Project(UUID id) {
         uuid = id;
     }
 
     public Project(String time, String description) {
-        uuid = UUID.randomUUID();
+        this.uuid = UUID.randomUUID();
         this.time = time;
         this.thePlan = description;
         this.done = 2;
@@ -28,10 +26,6 @@ public class Project {
 
     public UUID getUuid() {
         return uuid;
-    }
-
-    public void setUuid(UUID uuid) {
-        this.uuid = uuid;
     }
 
     public String getTime() {
