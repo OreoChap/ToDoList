@@ -7,8 +7,8 @@ import static com.example.oreooo.todoforstudy.Date.ProjectsBaseHelper.ProjectDnS
 import static com.example.oreooo.todoforstudy.Date.ProjectsBaseHelper.ProjectDnSchema.ProjectTable.Cols.*;
 
 public class ProjectsBaseHelper extends SQLiteOpenHelper {
-    static final int VERSION = 1;
-    static final String DATEBASE_NAME = "projectBase.db";
+    private static final int VERSION = 1;
+    private static final String DATEBASE_NAME = "projectBase.db";
 
     public ProjectsBaseHelper(Context context) {
         super(context, DATEBASE_NAME, null, VERSION);

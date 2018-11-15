@@ -15,7 +15,7 @@ import static com.example.oreooo.todoforstudy.Date.ProjectsBaseHelper.ProjectDnS
 public class ProjectLab {
 
     private Context mContext;
-    private SQLiteDatabase mDatebase;
+    private SQLiteDatabase mDateBase;
     private static ProjectLab mProjectLab;
 
     public static ProjectLab get(Context context) {
@@ -27,21 +27,21 @@ public class ProjectLab {
 
     private ProjectLab(Context context) {
         mContext = context;
-        mDatebase = new ProjectsBaseHelper(mContext).getWritableDatabase();
+        mDateBase = new ProjectsBaseHelper(mContext).getWritableDatabase();
     }
 
 
     public void addProject(Project p) {
         ContentValues values = getContentValues(p);
 
-        mDatebase.insert(NAME,
+        mDateBase.insert(NAME,
                 null, values);
     }
 
     public void updateProject(Project p) {
         String uuidString = p.getUuid().toString();
         ContentValues values = getContentValues(p);
-        mDatebase.update(NAME, values, UUID + " =?", new String[] { uuidString });
+        mDateBase.update(NAME, values, UUID + " =?", new String[] { uuidString });
     }
 
     public Project getProject(UUID uuid) {
@@ -87,7 +87,7 @@ public class ProjectLab {
     }
 
     private ProjectCursorWrapper queryProjects(String whereClause, String[] whereArgs) {
-        Cursor cursor = mDatebase.query(
+        Cursor cursor = mDateBase.query(
                 NAME, null,
                 whereClause, whereArgs,
                 null, null, "_id DESC");

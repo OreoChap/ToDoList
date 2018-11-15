@@ -17,8 +17,8 @@ import java.util.List;
 
 public class RVadapter extends RecyclerView.Adapter<RVadapter.RVHolder>{
 
-    Context mContext;
-    List<Project> items;
+    private Context mContext;
+    private List<Project> items;
 
     public enum IsDone {
         IS_DONE(1), NOT_DONE(2);
@@ -92,12 +92,11 @@ public class RVadapter extends RecyclerView.Adapter<RVadapter.RVHolder>{
             description.setText(mProject.getThePlan());
 
             checkedChange(mProject.getDone());
-            boolean checked = (mProject.getDone() == 1)?true:false;
-            button.setChecked(checked);
+            button.setChecked(mProject.getDone() == 1);
 
-            if (isSameTime == true) {
+            if (isSameTime) {
                 time.setVisibility(View.GONE);
-            } else if (isSameTime == false) {
+            } else {
                 time.setVisibility(View.VISIBLE);
             }
 

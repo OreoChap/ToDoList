@@ -12,7 +12,6 @@ import android.view.View;
 import android.widget.EditText;
 import com.example.oreooo.todoforstudy.Date.ProjectLab;
 import com.example.oreooo.todoforstudy.Fragment.PlanFragment;
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
