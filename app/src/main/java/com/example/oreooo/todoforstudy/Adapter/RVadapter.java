@@ -11,7 +11,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
 import com.example.oreooo.todoforstudy.Date.ProjectLab;
-import com.example.oreooo.todoforstudy.Project;
+import com.example.oreooo.todoforstudy.entity.Project;
 import com.example.oreooo.todoforstudy.R;
 import java.util.List;
 
@@ -40,18 +40,18 @@ public class RVadapter extends RecyclerView.Adapter<RVadapter.RVHolder>{
 
     @NonNull
     @Override
-    public RVadapter.RVHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+    public RVadapter.RVHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int position) {
         LayoutInflater inflater = LayoutInflater.from(mContext);
-        View view = inflater.inflate(R.layout.item_rv, viewGroup, false);
+        View view = inflater.inflate(R.layout.list_item_doingfragment, viewGroup, false);
         return new RVHolder(view, mContext);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RVadapter.RVHolder viewHolder, int i) {
-        Project project = items.get(i);
-        if (i > 0) {
-            Project first = items.get(i - 1);
-            Project last = items.get(i);
+    public void onBindViewHolder(@NonNull RVadapter.RVHolder viewHolder, int position) {
+        Project project = items.get(position);
+        if (position > 0) {
+            Project first = items.get(position - 1);
+            Project last = items.get(position);
             if (first.getTime().equals(last.getTime())) {
                 viewHolder.bindViewHolder(last, true);
             } else {
@@ -108,7 +108,6 @@ public class RVadapter extends RecyclerView.Adapter<RVadapter.RVHolder>{
         @Override
         public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
             int isDone = b ? 1:2;
-
             checkedChange(isDone);
             mProject.setDone(isDone);
             ProjectLab.get(mContext).updateProject(mProject);

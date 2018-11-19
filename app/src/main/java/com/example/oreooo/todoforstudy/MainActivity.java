@@ -1,6 +1,9 @@
 package com.example.oreooo.todoforstudy;
 
 import android.content.DialogInterface;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,27 +13,36 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+
+import com.example.oreooo.todoforstudy.Adapter.VPadapter;
 import com.example.oreooo.todoforstudy.Date.ProjectLab;
-import com.example.oreooo.todoforstudy.Fragment.PlanFragment;
+import com.example.oreooo.todoforstudy.Fragment.DoingFragment;
+import com.example.oreooo.todoforstudy.Fragment.DoneFragment;
+import com.example.oreooo.todoforstudy.entity.Project;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
 
     EditText dEdit;
+    ViewPager viewPager;
+    TabLayout pagerTitle;
+    List<Fragment> pagers = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_no1);
+        setContentView(R.layout.activity_main);
         initFragment();
+        initView();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        fragmentUpdate();
     }
 
     @Override
@@ -50,9 +62,22 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initFragment() {
+        /*
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragment_container, PlanFragment.newInstance())
+                .replace(R.id.fragment_container, DoingFragment.newInstance())
                 .commit();
+
+        */
+        DoingFragment doingFragment = DoingFragment.newInstance();
+        DoneFragment doneFragment = DoneFragment.newInstance();
+        pagers.add(doingFragment);
+        pagers.add(doneFragment);
+    }
+
+    private void initView() {
+        viewPager = findViewById(R.id.pager);
+        pagerTitle = findViewById(R.id.pager_title);
+        viewPager.setAdapter(new VPadapter(getSupportFragmentManager(), pagers));
     }
 
     private void showAddDialog() {
@@ -85,8 +110,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void fragmentUpdate() {
-        PlanFragment fragment = (PlanFragment)getSupportFragmentManager()
+        /*
+        DoingFragment fragment = (DoingFragment)getSupportFragmentManager()
                 .findFragmentById(R.id.fragment_container);
+        fragment.upDateUI();
+         */
+        DoingFragment fragment = (DoingFragment) pagers.get(0);
         fragment.upDateUI();
     }
 }

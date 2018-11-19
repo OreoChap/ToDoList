@@ -1,4 +1,4 @@
-package com.example.oreooo.todoforstudy;
+package com.example.oreooo.todoforstudy.entity;
 
 import java.util.UUID;
 

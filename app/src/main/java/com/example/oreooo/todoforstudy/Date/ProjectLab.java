@@ -5,7 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.CursorWrapper;
 import android.database.sqlite.SQLiteDatabase;
-import com.example.oreooo.todoforstudy.Project;
+import com.example.oreooo.todoforstudy.entity.Project;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -46,7 +46,7 @@ public class ProjectLab {
 
     public Project getProject(UUID uuid) {
         ProjectCursorWrapper cursor = queryProjects(UUID + " = ?",
-                new String[] { uuid.toString() });
+                new String[] { uuid.toString() }, null);
         try {
             if (cursor.getCount() == 0) {
                 return null;
@@ -60,8 +60,8 @@ public class ProjectLab {
 
     public List<Project> getProjects(){
         List<Project> projects = new ArrayList<>();
-        ProjectCursorWrapper cursor = queryProjects(null, null);
-
+        ProjectCursorWrapper cursor = queryProjects(
+                null, null, "_id DESC");
         try {
             cursor.moveToFirst();
             while (!cursor.isAfterLast()) {
@@ -74,23 +74,39 @@ public class ProjectLab {
         return projects;
     }
 
+    //Todo： 寻找 sql 数据库 中 时间 以及 打钩 的 project
 
-
+    public List<Project> getProjectsByTime(String time) {
+        List<Project> projects = new ArrayList<>();
+        ProjectCursorWrapper cursor = queryProjects(
+                "time = ? and done = ?",
+                new String[]{time, "1"}, null);
+        try {
+            cursor.moveToFirst();
+            while (!cursor.isAfterLast()) {
+                projects.add(cursor.getP());
+                cursor.moveToNext();
+            }
+        } finally {
+            cursor.close();
+        }
+        return projects;
+    }
 
     private ContentValues getContentValues(Project project) {
         ContentValues values = new ContentValues();
         values.put(UUID, project.getUuid().toString());
         values.put(TIME, project.getTime());
         values.put(DESCRIPTION, project.getThePlan());
-        values.put(DONE, project.getDone());
+        values.put(DONE, project.getDone().toString());
         return values;
     }
 
-    private ProjectCursorWrapper queryProjects(String whereClause, String[] whereArgs) {
+    private ProjectCursorWrapper queryProjects(String whereClause, String[] whereArgs, String orderBy) {
         Cursor cursor = mDateBase.query(
                 NAME, null,
                 whereClause, whereArgs,
-                null, null, "_id DESC");
+                null, null, orderBy);
         return new ProjectCursorWrapper(cursor);
     }
 
@@ -102,7 +118,6 @@ public class ProjectLab {
         }
 
         public Project getP() {
-
             String uuidString = getString(getColumnIndex(UUID));
             String time = getString(getColumnIndex(TIME));
             String description = getString(getColumnIndex(DESCRIPTION));
