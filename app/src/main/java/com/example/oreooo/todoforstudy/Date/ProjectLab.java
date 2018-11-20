@@ -74,13 +74,28 @@ public class ProjectLab {
         return projects;
     }
 
-    //Todo： 寻找 sql 数据库 中 时间 以及 打钩 的 project
-
     public List<Project> getProjectsByTime(String time) {
         List<Project> projects = new ArrayList<>();
         ProjectCursorWrapper cursor = queryProjects(
                 "time = ? and done = ?",
                 new String[]{time, "1"}, null);
+        try {
+            cursor.moveToFirst();
+            while (!cursor.isAfterLast()) {
+                projects.add(cursor.getP());
+                cursor.moveToNext();
+            }
+        } finally {
+            cursor.close();
+        }
+        return projects;
+    }
+
+    public List<Project> getProjectsByTodayDone() {
+        List<Project> projects = new ArrayList<>();
+        ProjectCursorWrapper cursor = queryProjects(
+                "done = ?",
+                new String[]{"1"}, null);
         try {
             cursor.moveToFirst();
             while (!cursor.isAfterLast()) {

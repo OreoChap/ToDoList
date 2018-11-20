@@ -34,7 +34,7 @@ public class RVadapterdone extends RecyclerView.Adapter<RVadapterdone.RVholder> 
 
     @Override
     public void onBindViewHolder(RVholder rVholder, int position) {
-        rVholder.bindViewHolder(mlist.get(position));
+        rVholder.bindViewHolder(mlist.get(position), position);
     }
 
     @Override
@@ -50,14 +50,12 @@ public class RVadapterdone extends RecyclerView.Adapter<RVadapterdone.RVholder> 
         RVholder(View view) {
             super(view);
             mTxtDescription = view.findViewById(R.id.txt_description);
-
         }
 
-        void bindViewHolder(Project p) {
+        void bindViewHolder(Project p, int position) {
             mProject = p;
-            mTxtDescription.setText(mProject.getThePlan());
+            String done = String.valueOf(position + 1) + ". " + mProject.getThePlan();
+            mTxtDescription.setText(done);
         }
-
-
     }
 }

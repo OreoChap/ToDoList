@@ -103,8 +103,6 @@ public class RVadapter extends RecyclerView.Adapter<RVadapter.RVHolder>{
             button.setOnCheckedChangeListener(this);
         }
 
-
-
         @Override
         public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
             int isDone = b ? 1:2;

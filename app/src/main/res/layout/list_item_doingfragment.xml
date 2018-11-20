@@ -1,27 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginLeft="20dp"
-    android:layout_marginRight="20dp"
-    android:layout_marginTop="15dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"     android:layout_marginTop="15dp"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:layout_marginLeft="20dp" android:layout_marginRight="20dp"
     >
-
-
 
     <TextView
         android:id="@+id/rv_item_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20dp"
+        android:hint="@string/fragment_time_hint"
 
-        android:hint="这是时间"
-
+        style="@style/itemTimeStyle"
         app:layout_constraintLeft_toLeftOf="parent"
         >
-
-
 
     </TextView>
 
@@ -29,7 +21,6 @@
     <android.support.constraint.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toLeftOf="@id/rv_item_time"
@@ -49,9 +40,11 @@
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginTop="5dp"
-            android:hint="这是描述"
             android:includeFontPadding="false"
+
+            android:hint="这是描述"
             android:textSize="18dp"
+
             app:layout_constraintBottom_toBottomOf="@id/rv_item_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintLeft_toRightOf="@id/rv_item_button"

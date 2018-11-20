@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">TodoForStudy</string>
     <string name="menu_add">Add a new Mission</string>
+    <string name="fragment_time_hint">这是时间</string>
 </resources>
