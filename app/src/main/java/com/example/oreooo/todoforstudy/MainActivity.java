@@ -1,8 +1,10 @@
 package com.example.oreooo.todoforstudy;
 
 import android.content.DialogInterface;
+import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -70,7 +72,23 @@ public class MainActivity extends AppCompatActivity {
     private void initView() {
         viewPager = findViewById(R.id.pager);
         pagerTitle = findViewById(R.id.pager_title);
-        viewPager.setAdapter(new VPadapter(getSupportFragmentManager(), pagers));
+        viewPager.setAdapter(new FragmentStatePagerAdapter(getSupportFragmentManager()) {
+            @Override
+            public Fragment getItem(int position) {
+                return pagers.get(position);
+            }
+
+            @Override
+            public int getCount() {
+                return pagers.size();
+            }
+
+            @Override
+            public CharSequence getPageTitle(int position) {
+                String[] title = {"DOING", "DONE"};
+                return title[position];
+            }
+        });
     }
 
     private void showAddDialog() {
