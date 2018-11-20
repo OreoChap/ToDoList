@@ -59,7 +59,7 @@ public class DoneFragment extends Fragment{
     }
 
     void updateUI(String time) {
-        List<Project> list = ProjectLab.get(mContext).getProjectsByTime(time);
+        List<Project> list = ProjectLab.get(mContext).getProjectsByTodayDone(time);
         RVadapterdone adapter = new RVadapterdone(list, mContext);
         rV.setAdapter(adapter);
         adapter.notifyDataSetChanged();
