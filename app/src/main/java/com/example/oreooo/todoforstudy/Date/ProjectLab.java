@@ -14,7 +14,6 @@ import static com.example.oreooo.todoforstudy.Date.ProjectsBaseHelper.ProjectDnS
 
 public class ProjectLab {
 
-    private Context mContext;
     private SQLiteDatabase mDateBase;
     private static ProjectLab mProjectLab;
 
@@ -26,14 +25,12 @@ public class ProjectLab {
     }
 
     private ProjectLab(Context context) {
-        mContext = context;
-        mDateBase = new ProjectsBaseHelper(mContext).getWritableDatabase();
+        mDateBase = new ProjectsBaseHelper(context).getWritableDatabase();
     }
 
 
     public void addProject(Project p) {
         ContentValues values = getContentValues(p);
-
         mDateBase.insert(NAME,
                 null, values);
     }
@@ -126,10 +123,9 @@ public class ProjectLab {
         return new ProjectCursorWrapper(cursor);
     }
 
-
     public class ProjectCursorWrapper extends CursorWrapper {
 
-        public ProjectCursorWrapper(Cursor cursor) {
+        ProjectCursorWrapper(Cursor cursor) {
             super(cursor);
         }
 

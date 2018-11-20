@@ -16,8 +16,8 @@ import java.util.List;
 
 public class RVadapterdone extends RecyclerView.Adapter<RVadapterdone.RVholder> {
 
-    Context mContext;
-    List<Project> mlist = new ArrayList<>();
+    private Context mContext;
+    private List<Project> mlist;
 
     public RVadapterdone(List<Project> list, Context context) {
         mContext = context;

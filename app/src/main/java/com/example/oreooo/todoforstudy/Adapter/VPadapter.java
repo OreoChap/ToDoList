@@ -3,12 +3,11 @@ package com.example.oreooo.todoforstudy.Adapter;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
-
 import java.util.List;
 
 public class VPadapter extends FragmentStatePagerAdapter {
 
-    List<Fragment> mlist;
+    private List<Fragment> mlist;
 
     public VPadapter(FragmentManager fm, List<Fragment>list){
         super(fm);

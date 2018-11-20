@@ -13,7 +13,6 @@ import android.widget.TextView;
 import com.example.oreooo.todoforstudy.Date.ProjectLab;
 import com.example.oreooo.todoforstudy.entity.Project;
 import com.example.oreooo.todoforstudy.R;
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -142,6 +141,4 @@ public class RVadapter extends RecyclerView.Adapter<RVadapter.RVHolder>{
                 doneTimeStr = sdf.format(d);
         }
     }
-
-
 }

@@ -2,8 +2,6 @@ package com.example.oreooo.todoforstudy.Fragment;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -11,12 +9,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import com.example.oreooo.todoforstudy.Adapter.RVadapterdone;
 import com.example.oreooo.todoforstudy.Date.ProjectLab;
 import com.example.oreooo.todoforstudy.R;
 import com.example.oreooo.todoforstudy.entity.Project;
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;

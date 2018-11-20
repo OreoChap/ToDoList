@@ -10,7 +10,7 @@ public class ProjectsBaseHelper extends SQLiteOpenHelper {
     private static final int VERSION = 1;
     private static final String DATEBASE_NAME = "projectBase.db";
 
-    public ProjectsBaseHelper(Context context) {
+    ProjectsBaseHelper(Context context) {
         super(context, DATEBASE_NAME, null, VERSION);
     }
 
