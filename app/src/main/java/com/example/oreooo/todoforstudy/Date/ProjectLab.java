@@ -91,11 +91,11 @@ public class ProjectLab {
         return projects;
     }
 
-    public List<Project> getProjectsByTodayDone() {
+    public List<Project> getProjectsByTodayDone(String today) {
         List<Project> projects = new ArrayList<>();
         ProjectCursorWrapper cursor = queryProjects(
-                "done = ?",
-                new String[]{"1"}, null);
+                "done = ? and today = ?",
+                new String[]{"1", today}, null);
         try {
             cursor.moveToFirst();
             while (!cursor.isAfterLast()) {
@@ -111,7 +111,7 @@ public class ProjectLab {
     private ContentValues getContentValues(Project project) {
         ContentValues values = new ContentValues();
         values.put(UUID, project.getUuid().toString());
-        values.put(TIME, project.getTime());
+        values.put(ADDTIME, project.getAddTime());
         values.put(DESCRIPTION, project.getThePlan());
         values.put(DONE, project.getDone().toString());
         return values;
@@ -134,12 +134,12 @@ public class ProjectLab {
 
         public Project getP() {
             String uuidString = getString(getColumnIndex(UUID));
-            String time = getString(getColumnIndex(TIME));
+            String time = getString(getColumnIndex(ADDTIME));
             String description = getString(getColumnIndex(DESCRIPTION));
             Integer done = getInt(getColumnIndex(DONE));
 
             Project p = new Project(java.util.UUID.fromString(uuidString));
-            p.setTime(time);
+            p.setAddTime(time);
             p.setThePlan(description);
             p.setDone(done);
 

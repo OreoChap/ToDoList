@@ -13,6 +13,9 @@ import android.widget.TextView;
 import com.example.oreooo.todoforstudy.Date.ProjectLab;
 import com.example.oreooo.todoforstudy.entity.Project;
 import com.example.oreooo.todoforstudy.R;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class RVadapter extends RecyclerView.Adapter<RVadapter.RVHolder>{
@@ -52,7 +55,7 @@ public class RVadapter extends RecyclerView.Adapter<RVadapter.RVHolder>{
         if (position > 0) {
             Project first = items.get(position - 1);
             Project last = items.get(position);
-            if (first.getTime().equals(last.getTime())) {
+            if (first.getAddTime().equals(last.getAddTime())) {
                 viewHolder.bindViewHolder(last, true);
             } else {
                 viewHolder.bindViewHolder(last, false);
@@ -73,14 +76,15 @@ public class RVadapter extends RecyclerView.Adapter<RVadapter.RVHolder>{
 
     class RVHolder extends RecyclerView.ViewHolder implements CheckBox.OnCheckedChangeListener{
         Project mProject;
-        TextView time;
+        TextView timeTxt;
         TextView description;
         CheckBox button;
         Context mContext;
+        String doneTimeStr;
 
         RVHolder(View view, Context context){
             super(view);
-            time = (TextView) view.findViewById(R.id.rv_item_time);
+            timeTxt = (TextView) view.findViewById(R.id.rv_item_time);
             description = (TextView) view.findViewById(R.id.rv_item_description);
             button = (CheckBox) view.findViewById(R.id.rv_item_button);
             mContext = context;
@@ -88,16 +92,16 @@ public class RVadapter extends RecyclerView.Adapter<RVadapter.RVHolder>{
 
         void bindViewHolder(Project project, boolean isSameTime) {
             mProject = project;
-            time.setText(mProject.getTime());
+            timeTxt.setText(mProject.getAddTime());
             description.setText(mProject.getThePlan());
 
             checkedChange(mProject.getDone());
             button.setChecked(mProject.getDone() == 1);
 
             if (isSameTime) {
-                time.setVisibility(View.GONE);
+                timeTxt.setVisibility(View.GONE);
             } else {
-                time.setVisibility(View.VISIBLE);
+                timeTxt.setVisibility(View.VISIBLE);
             }
 
             button.setOnCheckedChangeListener(this);
@@ -111,22 +115,33 @@ public class RVadapter extends RecyclerView.Adapter<RVadapter.RVHolder>{
             ProjectLab.get(mContext).updateProject(mProject);
         }
 
-        private void setColor(int color) {
-            description.setTextColor(mContext.getResources().getColor(color));
-        }
-
         private void checkedChange(int isDone) {
             switch (IsDone.getDone(isDone)){
                 case NOT_DONE:
                     description.getPaint().setFlags(0);
                     setColor(R.color.rv_item_black);
+                    mProject.setDoneTime("0");
                     break;
 
                 case IS_DONE:
                     description.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
                     setColor(R.color.rv_item_gray);
+                    checkDate();
+                    mProject.setDoneTime(doneTimeStr);
                     break;
             }
         }
+
+        private void setColor(int color) {
+            description.setTextColor(mContext.getResources().getColor(color));
+        }
+
+        void checkDate() {
+                Date d = new Date();
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                doneTimeStr = sdf.format(d);
+        }
     }
+
+
 }

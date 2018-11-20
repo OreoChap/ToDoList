@@ -18,7 +18,7 @@ public class ProjectsBaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("create table " + NAME + "(" +
                 " _id integer primary key autoincrement, " +
-                UUID + ", " + TIME + ", " + DESCRIPTION + ", " + DONE + ")"
+                UUID + ", " + ADDTIME + ", " + DESCRIPTION + ", " + DONE + "," + DONETIME + ")"
         );
     }
 
@@ -30,9 +30,10 @@ public class ProjectsBaseHelper extends SQLiteOpenHelper {
             static final String NAME = "Project";
             final class Cols {
                 static final String UUID = "uuid";
-                static final String TIME = "time";
+                static final String ADDTIME = "time";
                 static final String DESCRIPTION = "description";
                 static final String DONE = "done";
+                static final String DONETIME = "doneTime";
             }
         }
     }

@@ -62,12 +62,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initFragment() {
-        /*
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragment_container, DoingFragment.newInstance())
-                .commit();
-
-        */
         DoingFragment doingFragment = DoingFragment.newInstance();
         DoneFragment doneFragment = DoneFragment.newInstance();
         pagers.add(doingFragment);
@@ -110,11 +104,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void fragmentUpdate() {
-        /*
-        DoingFragment fragment = (DoingFragment)getSupportFragmentManager()
-                .findFragmentById(R.id.fragment_container);
-        fragment.upDateUI();
-         */
         DoingFragment fragment = (DoingFragment) pagers.get(0);
         fragment.upDateUI();
     }

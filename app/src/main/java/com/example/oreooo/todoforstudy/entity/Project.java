@@ -5,9 +5,10 @@ import java.util.UUID;
 public class Project {
 
     private UUID uuid;
-    private String time;
+    private String addTime;
     private String thePlan;
     private Integer done;
+    private String doneTime;
 
     public Project() {
         this(UUID.randomUUID());
@@ -17,23 +18,24 @@ public class Project {
         uuid = id;
     }
 
-    public Project(String time, String description) {
+    public Project(String addTime, String description) {
         this.uuid = UUID.randomUUID();
-        this.time = time;
+        this.addTime = addTime;
         this.thePlan = description;
         this.done = 2;
+        this.doneTime = "0";
     }
 
     public UUID getUuid() {
         return uuid;
     }
 
-    public String getTime() {
-        return time;
+    public String getAddTime() {
+        return addTime;
     }
 
-    public void setTime(String time) {
-        this.time = time;
+    public void setAddTime(String addTime) {
+        this.addTime = addTime;
     }
 
     public String getThePlan() {
@@ -50,5 +52,13 @@ public class Project {
 
     public void setDone(Integer done) {
         this.done = done;
+    }
+
+    public String getDoneTime() {
+        return doneTime;
+    }
+
+    public void setDoneTime(String doneTime) {
+        this.doneTime = doneTime;
     }
 }
