@@ -2,4 +2,5 @@
     <string name="app_name">TodoForStudy</string>
     <string name="menu_add">Add a new Mission</string>
     <string name="fragment_time_hint">这是时间</string>
+    <string name="add_project_hint">请输入描述</string>
 </resources>

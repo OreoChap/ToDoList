@@ -1,26 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-
-    <!-- 时间输入(暂不需要)
-    <EditText
-        android:id="@+id/time_edit"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="请输入时间"
-        />
-     -->
-
+    android:layout_width="match_parent" android:layout_height="match_parent">
 
     <EditText
         android:id="@+id/description_edit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
-        android:hint="请输入描述"
-        />
+        android:hint="@string/add_project_hint" />
 
 </android.support.constraint.ConstraintLayout>

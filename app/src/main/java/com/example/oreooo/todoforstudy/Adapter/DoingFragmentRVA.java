@@ -17,7 +17,13 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-public class RVadapter extends RecyclerView.Adapter<RVadapter.RVHolder>{
+/**
+ * https://github.com/OreoChap
+ * @author Oreo
+ * @date 2018/11/3
+ */
+
+public class DoingFragmentRVA extends RecyclerView.Adapter<DoingFragmentRVA.RVHolder>{
 
     private Context mContext;
     private List<Project> items;
@@ -34,7 +40,7 @@ public class RVadapter extends RecyclerView.Adapter<RVadapter.RVHolder>{
         }
     }
 
-    public RVadapter(List<Project> list, Context context){
+    public DoingFragmentRVA(List<Project> list, Context context){
         this.items = list;
         this.mContext = context;
     }
@@ -42,14 +48,14 @@ public class RVadapter extends RecyclerView.Adapter<RVadapter.RVHolder>{
 
     @NonNull
     @Override
-    public RVadapter.RVHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int position) {
+    public DoingFragmentRVA.RVHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int position) {
         LayoutInflater inflater = LayoutInflater.from(mContext);
         View view = inflater.inflate(R.layout.list_item_doingfragment, viewGroup, false);
         return new RVHolder(view, mContext);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RVadapter.RVHolder viewHolder, int position) {
+    public void onBindViewHolder(@NonNull DoingFragmentRVA.RVHolder viewHolder, int position) {
         Project project = items.get(position);
         if (position > 0) {
             Project first = items.get(position - 1);
@@ -67,10 +73,6 @@ public class RVadapter extends RecyclerView.Adapter<RVadapter.RVHolder>{
     @Override
     public int getItemCount() {
         return items.size();
-    }
-
-    public void setProjects(List<Project> list) {
-        items = list;
     }
 
     class RVHolder extends RecyclerView.ViewHolder implements CheckBox.OnCheckedChangeListener{

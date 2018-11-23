@@ -2,6 +2,12 @@ package com.example.oreooo.todoforstudy.entity;
 
 import java.util.UUID;
 
+/**
+ * https://github.com/OreoChap
+ * @author Oreo
+ * @date 2018/11/3
+ */
+
 public class Project {
 
     private UUID uuid;

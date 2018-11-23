@@ -6,6 +6,12 @@ import android.database.sqlite.SQLiteOpenHelper;
 import static com.example.oreooo.todoforstudy.Date.ProjectsBaseHelper.ProjectDnSchema.ProjectTable.*;
 import static com.example.oreooo.todoforstudy.Date.ProjectsBaseHelper.ProjectDnSchema.ProjectTable.Cols.*;
 
+/**
+ * https://github.com/OreoChap
+ * @author Oreo
+ * @date 2018/11/3
+ */
+
 public class ProjectsBaseHelper extends SQLiteOpenHelper {
     private static final int VERSION = 1;
     private static final String DATEBASE_NAME = "projectBase.db";
@@ -18,7 +24,8 @@ public class ProjectsBaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("create table " + NAME + "(" +
                 " _id integer primary key autoincrement, " +
-                UUID + ", " + ADDTIME + ", " + DESCRIPTION + ", " + DONE + "," + DONETIME + ")"
+                UUID + ", " + ADDTIME + ", " + DESCRIPTION + ", "
+                + DONE + "," + DONETIME + ")"
         );
     }
 

@@ -9,13 +9,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import com.example.oreooo.todoforstudy.Adapter.RVadapterdone;
+import com.example.oreooo.todoforstudy.Adapter.DoneFragmentRVA;
 import com.example.oreooo.todoforstudy.Date.ProjectLab;
 import com.example.oreooo.todoforstudy.R;
 import com.example.oreooo.todoforstudy.entity.Project;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+
+/**
+ * https://github.com/OreoChap
+ * @author Oreo
+ * @date 2018/11/3
+ */
 
 public class DoneFragment extends Fragment{
 
@@ -24,6 +30,7 @@ public class DoneFragment extends Fragment{
     TextView timeTxt;
     Boolean isCreated = false;
     String mDate;
+    DoneFragmentRVA doneFragmentRVA;
 
     public static DoneFragment newInstance() {
         return new DoneFragment();
@@ -56,9 +63,9 @@ public class DoneFragment extends Fragment{
 
     void updateUI(String time) {
         List<Project> list = ProjectLab.get(mContext).getProjectsByTodayDone(time);
-        RVadapterdone adapter = new RVadapterdone(list, mContext);
-        rV.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
+        doneFragmentRVA = new DoneFragmentRVA(list, mContext);
+        rV.setAdapter(doneFragmentRVA);
+        doneFragmentRVA.notifyDataSetChanged();
         timeTxt.setText(time);
     }
 

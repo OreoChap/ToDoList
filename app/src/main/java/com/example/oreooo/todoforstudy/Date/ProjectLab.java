@@ -12,6 +12,12 @@ import java.util.UUID;
 import static com.example.oreooo.todoforstudy.Date.ProjectsBaseHelper.ProjectDnSchema.ProjectTable.*;
 import static com.example.oreooo.todoforstudy.Date.ProjectsBaseHelper.ProjectDnSchema.ProjectTable.Cols.*;
 
+/**
+ * https://github.com/OreoChap
+ * @author Oreo
+ * @date 2018/11/3
+ */
+
 public class ProjectLab {
 
     private SQLiteDatabase mDateBase;
@@ -25,7 +31,8 @@ public class ProjectLab {
     }
 
     private ProjectLab(Context context) {
-        mDateBase = new ProjectsBaseHelper(context).getWritableDatabase();
+        mDateBase = new ProjectsBaseHelper(context)
+                .getWritableDatabase();
     }
 
 

@@ -5,6 +5,12 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import java.util.List;
 
+/**
+ * https://github.com/OreoChap
+ * @author Oreo
+ * @date 2018/11/3
+ */
+
 public class VPadapter extends FragmentStatePagerAdapter {
 
     private List<Fragment> mlist;

@@ -9,18 +9,24 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import com.example.oreooo.todoforstudy.Adapter.RVadapter;
+import com.example.oreooo.todoforstudy.Adapter.DoingFragmentRVA;
 import com.example.oreooo.todoforstudy.Date.ProjectLab;
 import com.example.oreooo.todoforstudy.entity.Project;
 import com.example.oreooo.todoforstudy.R;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * https://github.com/OreoChap
+ * @author Oreo
+ * @date 2018/11/3
+ */
+
 public class DoingFragment extends Fragment{
 
     RecyclerView rV;
     List<Project> mList = new ArrayList<>();
-    RVadapter rVadapter;
+    DoingFragmentRVA doingFragmentRVA;
     Context mContext;
 
     public static DoingFragment newInstance(){
@@ -40,8 +46,8 @@ public class DoingFragment extends Fragment{
 
     public void upDateUI() {
         mList = ProjectLab.get(mContext).getProjects();
-        rVadapter = new RVadapter(mList, mContext);
-        rV.setAdapter(rVadapter);
-        rVadapter.notifyDataSetChanged();
+        doingFragmentRVA = new DoingFragmentRVA(mList, mContext);
+        rV.setAdapter(doingFragmentRVA);
+        doingFragmentRVA.notifyDataSetChanged();
     }
 }
