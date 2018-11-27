@@ -9,6 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="@string/fragment_time_hint"
+        android:onClick="onTimePicker"
 
         style="@style/itemTimeStyle"
         app:layout_constraintLeft_toLeftOf="parent"/>

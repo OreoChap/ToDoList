@@ -2,7 +2,7 @@ package com.example.oreooo.todoforstudy.Adapter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.app.FragmentPagerAdapter;
 import java.util.List;
 
 /**
@@ -11,23 +11,23 @@ import java.util.List;
  * @date 2018/11/3
  */
 
-public class VPadapter extends FragmentStatePagerAdapter {
+public class VPadapter extends FragmentPagerAdapter {
 
-    private List<Fragment> mlist;
+    private List<Fragment> mList;
 
     public VPadapter(FragmentManager fm, List<Fragment>list){
         super(fm);
-        mlist = list;
+        mList = list;
     }
 
     @Override
     public Fragment getItem(int position) {
-        return mlist.get(position);
+        return mList.get(position);
     }
 
     @Override
     public int getCount() {
-        return mlist.size();
+        return mList.size();
     }
 
     @Override

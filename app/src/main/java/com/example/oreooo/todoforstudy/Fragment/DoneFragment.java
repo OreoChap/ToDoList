@@ -52,16 +52,7 @@ public class DoneFragment extends Fragment{
         return view;
     }
 
-    @Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-        if (isCreated) {
-            checkSysTime();
-            updateUI(mDate);
-        }
-    }
-
-    void updateUI(String time) {
+    public void updateUI(String time) {
         List<Project> list = ProjectLab.get(mContext).getProjectsByTodayDone(time);
         doneFragmentRVA = new DoneFragmentRVA(list, mContext);
         rV.setAdapter(doneFragmentRVA);
@@ -73,5 +64,9 @@ public class DoneFragment extends Fragment{
         Date d = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         mDate = sdf.format(d);
+    }
+
+    public void updateUI() {
+        updateUI(mDate);
     }
 }

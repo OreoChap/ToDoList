@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
@@ -15,11 +16,18 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+
+import com.example.oreooo.todoforstudy.Adapter.DoneFragmentRVA;
 import com.example.oreooo.todoforstudy.Adapter.VPadapter;
 import com.example.oreooo.todoforstudy.Date.ProjectLab;
 import com.example.oreooo.todoforstudy.Fragment.DoingFragment;
 import com.example.oreooo.todoforstudy.Fragment.DoneFragment;
 import com.example.oreooo.todoforstudy.entity.Project;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -37,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
     ViewPager viewPager;
     TabLayout pagerTitle;
     List<Fragment> pagers = new ArrayList<>();
+    DoingFragment doingFragment;
+    DoneFragment doneFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,11 +54,19 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         initFragment();
         initView();
+        EventBus.getDefault().register(this);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        EventBus.getDefault().unregister(this);
+        super.onDestroy();
     }
 
     @Override
@@ -68,8 +86,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initFragment() {
-        DoingFragment doingFragment = DoingFragment.newInstance();
-        DoneFragment doneFragment = DoneFragment.newInstance();
+        doingFragment = DoingFragment.newInstance();
+        doneFragment = DoneFragment.newInstance();
         pagers.add(doingFragment);
         pagers.add(doneFragment);
     }
@@ -77,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
     private void initView() {
         viewPager = findViewById(R.id.pager);
         pagerTitle = findViewById(R.id.pager_title);
-        viewPager.setAdapter(new FragmentStatePagerAdapter(getSupportFragmentManager()) {
+        viewPager.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
             @Override
             public Fragment getItem(int position) {
                 return pagers.get(position);
@@ -128,5 +146,10 @@ public class MainActivity extends AppCompatActivity {
     public void fragmentUpdate() {
         DoingFragment fragment = (DoingFragment) pagers.get(0);
         fragment.upDateUI();
+    }
+
+    @Subscribe (threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(MessageEvent event) {
+        doneFragment.updateUI();
     }
 }

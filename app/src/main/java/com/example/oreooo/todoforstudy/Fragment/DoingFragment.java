@@ -44,6 +44,16 @@ public class DoingFragment extends Fragment{
         return view;
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+    }
+
     public void upDateUI() {
         mList = ProjectLab.get(mContext).getProjects();
         doingFragmentRVA = new DoingFragmentRVA(mList, mContext);

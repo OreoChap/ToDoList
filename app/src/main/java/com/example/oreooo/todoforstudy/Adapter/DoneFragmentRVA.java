@@ -47,6 +47,7 @@ public class DoneFragmentRVA extends RecyclerView.Adapter<DoneFragmentRVA.RVHold
         return mlist.size();
     }
 
+
      class RVHolder extends RecyclerView.ViewHolder {
 
         TextView mTxtDescription;

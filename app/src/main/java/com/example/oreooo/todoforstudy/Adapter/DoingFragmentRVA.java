@@ -11,8 +11,12 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
 import com.example.oreooo.todoforstudy.Date.ProjectLab;
+import com.example.oreooo.todoforstudy.MessageEvent;
 import com.example.oreooo.todoforstudy.entity.Project;
 import com.example.oreooo.todoforstudy.R;
+
+import org.greenrobot.eventbus.EventBus;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -45,7 +49,6 @@ public class DoingFragmentRVA extends RecyclerView.Adapter<DoingFragmentRVA.RVHo
         this.mContext = context;
     }
 
-
     @NonNull
     @Override
     public DoingFragmentRVA.RVHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int position) {
@@ -53,6 +56,8 @@ public class DoingFragmentRVA extends RecyclerView.Adapter<DoingFragmentRVA.RVHo
         View view = inflater.inflate(R.layout.list_item_doingfragment, viewGroup, false);
         return new RVHolder(view, mContext);
     }
+
+
 
     @Override
     public void onBindViewHolder(@NonNull DoingFragmentRVA.RVHolder viewHolder, int position) {
@@ -114,6 +119,7 @@ public class DoingFragmentRVA extends RecyclerView.Adapter<DoingFragmentRVA.RVHo
             checkedChange(isDone);
             mProject.setDone(isDone);
             ProjectLab.get(mContext).updateProject(mProject);
+            EventBus.getDefault().post(new MessageEvent());
         }
 
         private void checkedChange(int isDone) {
