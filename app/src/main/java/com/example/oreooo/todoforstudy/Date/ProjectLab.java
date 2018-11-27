@@ -98,8 +98,8 @@ public class ProjectLab {
     public List<Project> getProjectsByTodayDone(String today) {
         List<Project> projects = new ArrayList<>();
         ProjectCursorWrapper cursor = queryProjects(
-                "doneTime = ? and done = ?",
-                new String[]{today, "1"}, null);
+                "doneTime = ?",
+                new String[]{today}, null);
         try {
             cursor.moveToFirst();
             while (!cursor.isAfterLast()) {
