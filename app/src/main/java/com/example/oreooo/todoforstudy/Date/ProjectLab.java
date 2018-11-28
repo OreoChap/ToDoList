@@ -21,11 +21,15 @@ import static com.example.oreooo.todoforstudy.Date.ProjectsBaseHelper.ProjectDnS
 public class ProjectLab {
 
     private SQLiteDatabase mDateBase;
-    private static ProjectLab mProjectLab;
+    private static ProjectLab mProjectLab = null;
 
-    public static ProjectLab get(Context context) {
+    public static ProjectLab getInstance(Context context) {
         if (mProjectLab == null) {
-            mProjectLab = new ProjectLab(context);
+            synchronized (ProjectLab.class) {
+                if (mProjectLab == null) {
+                    mProjectLab = new ProjectLab(context);
+                }
+            }
         }
         return mProjectLab;
     }

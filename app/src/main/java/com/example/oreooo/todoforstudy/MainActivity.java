@@ -1,11 +1,9 @@
 package com.example.oreooo.todoforstudy;
 
 import android.content.DialogInterface;
-import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -20,11 +18,9 @@ import com.example.oreooo.todoforstudy.Date.ProjectLab;
 import com.example.oreooo.todoforstudy.Fragment.DoingFragment;
 import com.example.oreooo.todoforstudy.Fragment.DoneFragment;
 import com.example.oreooo.todoforstudy.entity.Project;
-
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -133,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
                                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                                 String timeInput = sdf.format(d);
                                 Project p = new Project(timeInput, descriptionInput);
-                                ProjectLab.get(MainActivity.this).addProject(p);
+                                ProjectLab.getInstance(MainActivity.this).addProject(p);
                                 fragmentUpdate();
                             }
                         })

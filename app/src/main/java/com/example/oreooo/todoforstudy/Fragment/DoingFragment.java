@@ -45,7 +45,7 @@ public class DoingFragment extends Fragment{
     }
 
     public void upDateUI() {
-        mList = ProjectLab.get(mContext).getProjects();
+        mList = ProjectLab.getInstance(mContext).getProjects();
         doingFragmentRVA = new DoingFragmentRVA(mList, mContext);
         rV.setAdapter(doingFragmentRVA);
         doingFragmentRVA.notifyDataSetChanged();

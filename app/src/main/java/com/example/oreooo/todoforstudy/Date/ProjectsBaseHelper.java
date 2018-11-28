@@ -29,8 +29,6 @@ public class ProjectsBaseHelper extends SQLiteOpenHelper {
                 UUID + ", " + ADDTIME + ", " + DESCRIPTION + ", "
                 + DONE + "," + DONETIME + "," + DONEDATE + ")"
         );
-        //final int FIRST_VERSION = 1;
-        //onUpgrade(db, FIRST_VERSION, VERSION);
     }
 
     @Override

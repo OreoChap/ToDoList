@@ -1,8 +1,11 @@
 package com.example.oreooo.todoforstudy.Adapter;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Paint;
 import android.support.annotation.NonNull;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -116,11 +119,33 @@ public class DoingFragmentRVA extends RecyclerView.Adapter<DoingFragmentRVA.RVHo
         }
 
         @Override
-        public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-            int isDone = b ? 1:2;
+        public void onCheckedChanged(final CompoundButton compoundButton, final boolean b) {
+            final int isDone = b ? 1:2;
+            if (!b) {
+                AlertDialog.Builder dialog= new AlertDialog.Builder(mContext);
+                dialog.setTitle("是否更改为未完成")
+                        .setNegativeButton("确定", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                updateDoneFragmentUI(isDone);
+                            }
+                        })
+                        .setPositiveButton("取消", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                compoundButton.setChecked(!b);
+                            }
+                        })
+                        .show();
+            } else {
+                updateDoneFragmentUI(isDone);
+            }
+        }
+
+        private void updateDoneFragmentUI(int isDone) {
             checkedChange(isDone);
             mProject.setDone(isDone);
-            ProjectLab.get(mContext).updateProject(mProject);
+            ProjectLab.getInstance(mContext).updateProject(mProject);
             EventBus.getDefault().post(new MessageEvent());
         }
 
@@ -128,14 +153,16 @@ public class DoingFragmentRVA extends RecyclerView.Adapter<DoingFragmentRVA.RVHo
             switch (IsDone.getDone(isDone)){
                 case NOT_DONE:
                     description.getPaint().setFlags(0);
-                    setColor(R.color.rv_item_black);
+                    description.setTextColor(mContext.getResources()
+                            .getColor(R.color.rv_item_black));
                     mProject.setDoneTime("0");
                     mProject.setDoneDate("0");
                     break;
 
                 case IS_DONE:
                     description.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
-                    setColor(R.color.rv_item_gray);
+                    description.setTextColor(mContext.getResources()
+                            .getColor(R.color.rv_item_gray));
                     checkDate();
                     mProject.setDoneTime(doneTimeStr);
                     mProject.setDoneDate(doneDateStr);
@@ -143,11 +170,7 @@ public class DoingFragmentRVA extends RecyclerView.Adapter<DoingFragmentRVA.RVHo
             }
         }
 
-        private void setColor(int color) {
-            description.setTextColor(mContext.getResources().getColor(color));
-        }
-
-        void checkDate() {
+        private void checkDate() {
                 Date d = new Date();
                 SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
                 SimpleDateFormat sdf2 = new SimpleDateFormat("HH:mm:ss");
