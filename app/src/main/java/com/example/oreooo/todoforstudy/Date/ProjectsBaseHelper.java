@@ -3,6 +3,8 @@ package com.example.oreooo.todoforstudy.Date;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.Toast;
+
 import static com.example.oreooo.todoforstudy.Date.ProjectsBaseHelper.ProjectDnSchema.ProjectTable.*;
 import static com.example.oreooo.todoforstudy.Date.ProjectsBaseHelper.ProjectDnSchema.ProjectTable.Cols.*;
 
@@ -25,12 +27,14 @@ public class ProjectsBaseHelper extends SQLiteOpenHelper {
         db.execSQL("create table " + NAME + "(" +
                 " _id integer primary key autoincrement, " +
                 UUID + ", " + ADDTIME + ", " + DESCRIPTION + ", "
-                + DONE + "," + DONETIME + ")"
+                + DONE + "," + DONETIME + "," + DONEDATE + ")"
         );
+        //final int FIRST_VERSION = 1;
+        //onUpgrade(db, FIRST_VERSION, VERSION);
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int odlVersion, int newVersion) { }
+    public void onUpgrade(SQLiteDatabase db, int odlVersion, int newVersion) { }
 
     class ProjectDnSchema {
         final class ProjectTable {
@@ -41,6 +45,7 @@ public class ProjectsBaseHelper extends SQLiteOpenHelper {
                 static final String DESCRIPTION = "description";
                 static final String DONE = "done";
                 static final String DONETIME = "doneTime";
+                static final String DONEDATE = "doneDate";
             }
         }
     }

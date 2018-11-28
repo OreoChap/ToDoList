@@ -15,6 +15,7 @@ public class Project {
     private String thePlan;
     private Integer done;
     private String doneTime;
+    private String doneDate;
 
     public Project() {
         this(UUID.randomUUID());
@@ -30,6 +31,7 @@ public class Project {
         this.thePlan = description;
         this.done = 2;
         this.doneTime = "0";
+        this.doneDate = "0";
     }
 
     public UUID getUuid() {
@@ -66,5 +68,13 @@ public class Project {
 
     public void setDoneTime(String doneTime) {
         this.doneTime = doneTime;
+    }
+
+    public String getDoneDate() {
+        return doneDate;
+    }
+
+    public void setDoneDate(String doneDate) {
+        this.doneDate = doneDate;
     }
 }

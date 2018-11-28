@@ -98,8 +98,8 @@ public class ProjectLab {
     public List<Project> getProjectsByTodayDone(String today) {
         List<Project> projects = new ArrayList<>();
         ProjectCursorWrapper cursor = queryProjects(
-                "doneTime = ?",
-                new String[]{today}, null);
+                "doneDate = ?",
+                new String[]{ today }, "doneTime");
         try {
             cursor.moveToFirst();
             while (!cursor.isAfterLast()) {
@@ -119,6 +119,7 @@ public class ProjectLab {
         values.put(DESCRIPTION, project.getThePlan());
         values.put(DONE, project.getDone().toString());
         values.put(DONETIME, project.getDoneTime());
+        values.put(DONEDATE, project.getDoneDate());
         return values;
     }
 
@@ -138,13 +139,17 @@ public class ProjectLab {
 
         public Project getP() {
             String uuidString = getString(getColumnIndex(UUID));
-            String time = getString(getColumnIndex(ADDTIME));
+            String addTime = getString(getColumnIndex(ADDTIME));
             String description = getString(getColumnIndex(DESCRIPTION));
+            String doneTime = getString(getColumnIndex(DONETIME));
+            String doneDate = getString(getColumnIndex(DONEDATE));
             Integer done = getInt(getColumnIndex(DONE));
 
             Project p = new Project(java.util.UUID.fromString(uuidString));
-            p.setAddTime(time);
+            p.setAddTime(addTime);
             p.setThePlan(description);
+            p.setDoneTime(doneTime);
+            p.setDoneDate(doneDate);
             p.setDone(done);
 
             return p;

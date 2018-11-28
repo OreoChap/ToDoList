@@ -17,6 +17,7 @@ import com.example.oreooo.todoforstudy.R;
 
 import org.greenrobot.eventbus.EventBus;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -87,6 +88,7 @@ public class DoingFragmentRVA extends RecyclerView.Adapter<DoingFragmentRVA.RVHo
         CheckBox button;
         Context mContext;
         String doneTimeStr;
+        String doneDateStr;
 
         RVHolder(View view, Context context){
             super(view);
@@ -128,6 +130,7 @@ public class DoingFragmentRVA extends RecyclerView.Adapter<DoingFragmentRVA.RVHo
                     description.getPaint().setFlags(0);
                     setColor(R.color.rv_item_black);
                     mProject.setDoneTime("0");
+                    mProject.setDoneDate("0");
                     break;
 
                 case IS_DONE:
@@ -135,6 +138,7 @@ public class DoingFragmentRVA extends RecyclerView.Adapter<DoingFragmentRVA.RVHo
                     setColor(R.color.rv_item_gray);
                     checkDate();
                     mProject.setDoneTime(doneTimeStr);
+                    mProject.setDoneDate(doneDateStr);
                     break;
             }
         }
@@ -145,8 +149,10 @@ public class DoingFragmentRVA extends RecyclerView.Adapter<DoingFragmentRVA.RVHo
 
         void checkDate() {
                 Date d = new Date();
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-                doneTimeStr = sdf.format(d);
+                SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
+                SimpleDateFormat sdf2 = new SimpleDateFormat("HH:mm:ss");
+                doneDateStr = sdf1.format(d);
+                doneTimeStr = sdf2.format(d);
         }
     }
 }
