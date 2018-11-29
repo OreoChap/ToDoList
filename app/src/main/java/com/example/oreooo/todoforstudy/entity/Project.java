@@ -9,7 +9,6 @@ import java.util.UUID;
  */
 
 public class Project {
-
     private UUID uuid;
     private String addTime;
     private String thePlan;

@@ -33,7 +33,6 @@ import java.util.List;
  */
 
 public class DoingFragmentRVA extends RecyclerView.Adapter<DoingFragmentRVA.RVHolder>{
-
     private Context mContext;
     private List<Project> items;
     private static final String TAG = "DoingFragmentRVA";
@@ -62,8 +61,6 @@ public class DoingFragmentRVA extends RecyclerView.Adapter<DoingFragmentRVA.RVHo
         View view = inflater.inflate(R.layout.list_item_doingfragment, viewGroup, false);
         return new RVHolder(view, mContext);
     }
-
-
 
     @Override
     public void onBindViewHolder(@NonNull DoingFragmentRVA.RVHolder viewHolder, int position) {

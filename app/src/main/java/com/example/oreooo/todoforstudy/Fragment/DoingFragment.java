@@ -23,7 +23,6 @@ import java.util.List;
  */
 
 public class DoingFragment extends Fragment{
-
     RecyclerView rV;
     List<Project> mList = new ArrayList<>();
     DoingFragmentRVA doingFragmentRVA;

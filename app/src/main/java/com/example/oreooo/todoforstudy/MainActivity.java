@@ -34,7 +34,6 @@ import java.util.List;
  */
 
 public class MainActivity extends AppCompatActivity {
-
     EditText dEdit;
     ViewPager viewPager;
     TabLayout pagerTitle;
@@ -56,7 +55,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
     }
-
 
     @Override
     protected void onDestroy() {

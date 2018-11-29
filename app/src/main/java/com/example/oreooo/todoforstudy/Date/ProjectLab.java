@@ -19,7 +19,6 @@ import static com.example.oreooo.todoforstudy.Date.ProjectsBaseHelper.ProjectDnS
  */
 
 public class ProjectLab {
-
     private SQLiteDatabase mDateBase;
     private static ProjectLab mProjectLab = null;
 

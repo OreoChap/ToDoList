@@ -24,7 +24,6 @@ import java.util.List;
  */
 
 public class DoneFragment extends Fragment{
-
     RecyclerView rV;
     Context mContext;
     TextView timeTxt;
