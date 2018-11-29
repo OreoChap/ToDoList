@@ -7,6 +7,7 @@ import android.graphics.Paint;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,6 +36,7 @@ public class DoingFragmentRVA extends RecyclerView.Adapter<DoingFragmentRVA.RVHo
 
     private Context mContext;
     private List<Project> items;
+    private static final String TAG = "DoingFragmentRVA";
 
     public enum IsDone {
         IS_DONE(1), NOT_DONE(2);
@@ -146,7 +148,8 @@ public class DoingFragmentRVA extends RecyclerView.Adapter<DoingFragmentRVA.RVHo
             checkedChange(isDone);
             mProject.setDone(isDone);
             ProjectLab.getInstance(mContext).updateProject(mProject);
-            EventBus.getDefault().post(new MessageEvent());
+            EventBus.getDefault().post
+                    (new MessageEvent.DoneFragmentUpdateUIEvent("Send DoneFragmentUpdateUI Event"));
         }
 
         private void checkedChange(int isDone) {
@@ -157,6 +160,7 @@ public class DoingFragmentRVA extends RecyclerView.Adapter<DoingFragmentRVA.RVHo
                             .getColor(R.color.rv_item_black));
                     mProject.setDoneTime("0");
                     mProject.setDoneDate("0");
+                    Log.d(TAG, "Project not done");
                     break;
 
                 case IS_DONE:
@@ -166,6 +170,7 @@ public class DoingFragmentRVA extends RecyclerView.Adapter<DoingFragmentRVA.RVHo
                     checkDate();
                     mProject.setDoneTime(doneTimeStr);
                     mProject.setDoneDate(doneDateStr);
+                    Log.d(TAG, "Project done");
                     break;
             }
         }

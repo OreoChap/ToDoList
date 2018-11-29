@@ -8,6 +8,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -40,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     List<Fragment> pagers = new ArrayList<>();
     DoingFragment doingFragment;
     DoneFragment doneFragment;
+    private static final String TAG = "MainActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -130,19 +132,22 @@ public class MainActivity extends AppCompatActivity {
                                 String timeInput = sdf.format(d);
                                 Project p = new Project(timeInput, descriptionInput);
                                 ProjectLab.getInstance(MainActivity.this).addProject(p);
-                                fragmentUpdate();
+                                doingFragmentUpdateUI();
                             }
                         })
                 .show();
+        Log.d(TAG, "Description Dialog Created");
     }
 
-    public void fragmentUpdate() {
-        DoingFragment fragment = (DoingFragment) pagers.get(0);
-        fragment.upDateUI();
+    private void doingFragmentUpdateUI() {
+        doingFragment.upDateUI();
+        Log.d(TAG, "DoingFragmentUpdateUI");
     }
 
     @Subscribe (threadMode = ThreadMode.MAIN)
-    public void onMessageEvent(MessageEvent event) {
+    public void onMessageEvent(MessageEvent.DoneFragmentUpdateUIEvent event) {
         doneFragment.updateUI();
+        Log.d(TAG, event.message);
+        Log.d(TAG, "DoneFragmentUpdateUI");
     }
 }

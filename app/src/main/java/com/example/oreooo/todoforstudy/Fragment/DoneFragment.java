@@ -28,7 +28,6 @@ public class DoneFragment extends Fragment{
     RecyclerView rV;
     Context mContext;
     TextView timeTxt;
-    Boolean isCreated = false;
     String mDate;
     DoneFragmentRVA doneFragmentRVA;
 
@@ -44,15 +43,16 @@ public class DoneFragment extends Fragment{
         rV = (RecyclerView)view.findViewById(R.id.recycler_doneFragment);
         timeTxt = (TextView)view.findViewById(R.id.txt_time);
         rV.setLayoutManager(new LinearLayoutManager(mContext));
-
-        //todo: 系统日期变更时，更新date
         checkSysTime();
-        updateUI(mDate);
-        isCreated = true;
+        updateUI();
         return view;
     }
 
-    public void updateUI(String time) {
+    public void updateUI() {
+        updateUI(mDate);
+    }
+
+    private void updateUI(String time) {
         List<Project> list = ProjectLab.getInstance(mContext).getProjectsByTodayDone(time);
         doneFragmentRVA = new DoneFragmentRVA(list, mContext);
         rV.setAdapter(doneFragmentRVA);
@@ -60,13 +60,10 @@ public class DoneFragment extends Fragment{
         timeTxt.setText(time);
     }
 
-    void checkSysTime() {
+    //todo: 系统日期变更时，更新date
+    private void checkSysTime() {
         Date d = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         mDate = sdf.format(d);
-    }
-
-    public void updateUI() {
-        updateUI(mDate);
     }
 }
