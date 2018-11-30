@@ -104,7 +104,6 @@ public class DoingFragmentRVA extends RecyclerView.Adapter<DoingFragmentRVA.RVHo
             mProject = project;
             timeTxt.setText(mProject.getAddTime());
             description.setText(mProject.getThePlan());
-
             checkedChange(mProject.getDone());
             button.setChecked(mProject.getDone() == 1);
 
@@ -113,14 +112,13 @@ public class DoingFragmentRVA extends RecyclerView.Adapter<DoingFragmentRVA.RVHo
             } else {
                 timeTxt.setVisibility(View.VISIBLE);
             }
-
             button.setOnCheckedChangeListener(this);
         }
 
         @Override
-        public void onCheckedChanged(final CompoundButton compoundButton, final boolean b) {
-            final int isDone = b ? 1:2;
-            if (!b) {
+        public void onCheckedChanged(final CompoundButton compoundButton, final boolean changeTo) {
+            final int isDone = changeTo ? 1:2;
+            if (mProject.getDone() == 1 && !changeTo ) {
                 AlertDialog.Builder dialog= new AlertDialog.Builder(mContext);
                 dialog.setTitle("是否更改为未完成")
                         .setNegativeButton("确定", new DialogInterface.OnClickListener() {
@@ -132,11 +130,17 @@ public class DoingFragmentRVA extends RecyclerView.Adapter<DoingFragmentRVA.RVHo
                         .setPositiveButton("取消", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                compoundButton.setChecked(!b);
+                                compoundButton.setChecked(!changeTo);
+                            }
+                        })
+                        .setOnCancelListener(new DialogInterface.OnCancelListener() {
+                            @Override
+                            public void onCancel(DialogInterface dialogInterface) {
+                                compoundButton.setChecked(!changeTo);
                             }
                         })
                         .show();
-            } else {
+            } else if (mProject.getDone() == 2){
                 updateDoneFragmentUI(isDone);
             }
         }
