@@ -39,6 +39,7 @@ public class DoingFragmentRVA extends RecyclerView.Adapter<DoingFragmentRVA.RVHo
 
     public enum IsDone {
         IS_DONE(1), NOT_DONE(2);
+
         private int DONE;
 
         IsDone(int Do) {DONE = Do;}

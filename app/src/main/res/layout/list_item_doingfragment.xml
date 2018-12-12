@@ -8,7 +8,6 @@
         android:id="@+id/rv_item_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="@string/fragment_time_hint"
         android:onClick="onTimePicker"
 
         style="@style/itemTimeStyle"
@@ -38,6 +37,7 @@
             android:layout_marginRight="8dp"
             android:layout_marginTop="5dp"
             android:includeFontPadding="false"
+            android:hint="这里是描述"
 
             app:layout_constraintBottom_toBottomOf="@id/rv_item_button"
             app:layout_constraintEnd_toEndOf="parent"

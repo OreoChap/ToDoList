@@ -60,7 +60,7 @@ public class DoneFragment extends Fragment{
     }
 
     //todo: 系统日期变更时，更新date
-    private void checkSysTime() {
+    public void checkSysTime() {
         Date d = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         mDate = sdf.format(d);
