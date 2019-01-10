@@ -65,6 +65,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onRestart() {
         super.onRestart();
+        if (doneFragment == null) {
+            doneFragment = DoneFragment.newInstance();
+        }
         doneFragment.checkSysTime();
         doneFragment.updateUI();
     }

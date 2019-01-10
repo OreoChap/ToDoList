@@ -59,7 +59,6 @@ public class DoneFragment extends Fragment{
         timeTxt.setText(time);
     }
 
-    //todo: 系统日期变更时，更新date
     public void checkSysTime() {
         Date d = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
