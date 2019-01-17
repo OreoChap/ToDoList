@@ -32,7 +32,7 @@ public class ProjectsBaseHelper extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase db, int odlVersion, int newVersion) { }
+    public void onUpgrade(SQLiteDatabase db, int odlVersion, int newVersion) {}
 
     class ProjectDnSchema {
         final class ProjectTable {

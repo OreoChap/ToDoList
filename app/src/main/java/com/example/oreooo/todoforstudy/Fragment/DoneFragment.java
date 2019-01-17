@@ -48,10 +48,10 @@ public class DoneFragment extends Fragment{
     }
 
     public void updateUI() {
-        updateUI(mDate);
+        update(mDate);
     }
 
-    private void updateUI(String time) {
+    private void update(String time) {
         List<Project> list = ProjectLab.getInstance(mContext).getProjectsByTodayDone(time);
         doneFragmentRVA = new DoneFragmentRVA(list, mContext);
         rV.setAdapter(doneFragmentRVA);
