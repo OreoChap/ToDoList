@@ -30,8 +30,17 @@ public class DoneFragment extends Fragment{
     String mDate;
     DoneFragmentRVA doneFragmentRVA;
 
-    public static DoneFragment newInstance() {
-        return new DoneFragment();
+    static DoneFragment mFragment = null;
+
+    public static DoneFragment getInstance(){
+        if (null == mFragment) {
+            synchronized (DoneFragment.class) {
+                if (null == mFragment) {
+                    mFragment = new DoneFragment();
+                }
+            }
+        }
+        return mFragment;
     }
 
     @Override

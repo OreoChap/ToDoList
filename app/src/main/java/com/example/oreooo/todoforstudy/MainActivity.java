@@ -34,13 +34,15 @@ import java.util.List;
  */
 
 public class MainActivity extends AppCompatActivity {
-    EditText dEdit;
+    EditText mEdit;
     ViewPager viewPager;
     TabLayout pagerTitle;
     List<Fragment> pagers = new ArrayList<>();
     DoingFragment doingFragment;
     DoneFragment doneFragment;
     private static final String TAG = "MainActivity";
+
+    ProjectDialog mDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onRestart() {
         super.onRestart();
         if (doneFragment == null) {
-            doneFragment = DoneFragment.newInstance();
+            doneFragment = DoneFragment.getInstance();
         }
         doneFragment.checkSysTime();
         doneFragment.updateUI();
@@ -83,14 +85,18 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.add_mission:
-                showAddDialog();
+                if (null == mDialog) {
+                    mDialog = ProjectDialog.getInstance(this);
+                }
+                mDialog.showDialog();
+                //showAddDialog();
         }
         return super.onOptionsItemSelected(item);
     }
 
     private void initFragment() {
-        doingFragment = DoingFragment.newInstance();
-        doneFragment = DoneFragment.newInstance();
+        doingFragment = DoingFragment.getInstance();
+        doneFragment = DoneFragment.getInstance();
         pagers.add(doingFragment);
         pagers.add(doneFragment);
     }
@@ -121,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
         final AlertDialog.Builder mDialog = new AlertDialog.Builder(MainActivity.this);
         final View view = LayoutInflater.from(this)
                 .inflate(R.layout.dialog_add_plan, null);
-        dEdit = view.findViewById(R.id.description_edit);
+        mEdit = view.findViewById(R.id.description_edit);
 
         mDialog.setTitle("创建")
                 .setView(view)
@@ -130,7 +136,7 @@ public class MainActivity extends AppCompatActivity {
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                String descriptionInput = dEdit.getText().toString();
+                                String descriptionInput = mEdit.getText().toString();
                                 if (descriptionInput.isEmpty()) {
                                     dialogInterface.dismiss();
                                     return;
