@@ -69,4 +69,34 @@ public class ProjectDialog {
                 .show();
     }
 
+    /**
+     * 用来修改每个item
+     * @param p
+     */
+    public void showDialog(final Project p){
+        final AlertDialog.Builder mDialog = new AlertDialog.Builder(mContext);
+        final View view = LayoutInflater.from(mContext)
+                .inflate(R.layout.dialog_add_plan, null);
+        mEdit = view.findViewById(R.id.description_edit);
+        mEdit.setText(p.getThePlan());
+
+        mDialog.setTitle("修改")
+                .setView(view)
+                .setPositiveButton("取消", null)
+                .setNegativeButton("确定",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                String descriptionInput = mEdit.getText().toString();
+                                if (descriptionInput.isEmpty()) {
+                                    dialogInterface.dismiss();
+                                    return;
+                                }
+                                p.setThePlan(descriptionInput);
+                                ProjectLab.getInstance(mContext).updateProject(p);
+                                interFace.update();
+                            }
+                        })
+                .show();
+    }
 }

@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
                     mDialog = ProjectDialog.getInstance(this);
                 }
                 mDialog.showDialog();
-                //showAddDialog();
+                Log.d(TAG, "Dialog Created");
         }
         return super.onOptionsItemSelected(item);
     }
@@ -121,36 +121,6 @@ public class MainActivity extends AppCompatActivity {
                 return title[position];
             }
         });
-    }
-
-    private void showAddDialog() {
-        final AlertDialog.Builder mDialog = new AlertDialog.Builder(MainActivity.this);
-        final View view = LayoutInflater.from(this)
-                .inflate(R.layout.dialog_add_plan, null);
-        mEdit = view.findViewById(R.id.description_edit);
-
-        mDialog.setTitle("创建")
-                .setView(view)
-                .setPositiveButton("取消", null)
-                .setNegativeButton("确定",
-                        new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                String descriptionInput = mEdit.getText().toString();
-                                if (descriptionInput.isEmpty()) {
-                                    dialogInterface.dismiss();
-                                    return;
-                                }
-                                Date d = new Date();
-                                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-                                String timeInput = sdf.format(d);
-                                Project p = new Project(timeInput, descriptionInput);
-                                ProjectLab.getInstance(MainActivity.this).addProject(p);
-                                doingFragmentUpdateUI();
-                            }
-                        })
-                .show();
-        Log.d(TAG, "Description Dialog Created");
     }
 
     private void doingFragmentUpdateUI() {

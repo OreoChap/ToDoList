@@ -16,6 +16,7 @@ import android.widget.CompoundButton;
 import android.widget.TextView;
 import com.example.oreooo.todoforstudy.Date.ProjectLab;
 import com.example.oreooo.todoforstudy.MessageEvent;
+import com.example.oreooo.todoforstudy.ProjectDialog;
 import com.example.oreooo.todoforstudy.entity.Project;
 import com.example.oreooo.todoforstudy.R;
 
@@ -92,6 +93,7 @@ public class DoingFragmentRVA extends RecyclerView.Adapter<DoingFragmentRVA.RVHo
         Context mContext;
         String doneTimeStr;
         String doneDateStr;
+        ProjectDialog dialog;
 
         RVHolder(View view, Context context){
             super(view);
@@ -105,6 +107,14 @@ public class DoingFragmentRVA extends RecyclerView.Adapter<DoingFragmentRVA.RVHo
             mProject = project;
             timeTxt.setText(mProject.getAddTime());
             description.setText(mProject.getThePlan());
+            description.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    ProjectDialog dialog = ProjectDialog.getInstance(mContext);
+                    dialog.showDialog(mProject);
+                    return true;
+                }
+            });
             checkedChange(mProject.getDone());
             button.setChecked(mProject.getDone() == 1);
 
