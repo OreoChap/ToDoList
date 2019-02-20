@@ -28,7 +28,8 @@ public class Project {
         this.uuid = UUID.randomUUID();
         this.addTime = addTime;
         this.thePlan = description;
-        this.done = 2;  //表示未完成
+        // 2表示未完成, 1表示完成
+        this.done = 2;
         this.doneTime = "0";
         this.doneDate = "0";
     }

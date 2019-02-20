@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.example.oreooo.todoforstudy.Date.ProjectLab;
 import com.example.oreooo.todoforstudy.MessageEvent;
@@ -37,6 +38,7 @@ public class DoingFragmentRVA extends RecyclerView.Adapter<DoingFragmentRVA.RVHo
     private Context mContext;
     private List<Project> items;
     private static final String TAG = "DoingFragmentRVA";
+    private static boolean SHOW_DONE_PROJECT = true;
 
     public enum IsDone {
         IS_DONE(1), NOT_DONE(2);
@@ -58,24 +60,26 @@ public class DoingFragmentRVA extends RecyclerView.Adapter<DoingFragmentRVA.RVHo
 
     @NonNull
     @Override
-    public DoingFragmentRVA.RVHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int position) {
+    public DoingFragmentRVA.RVHolder onCreateViewHolder(@NonNull ViewGroup viewGroup,
+                                                        int position) {
         LayoutInflater inflater = LayoutInflater.from(mContext);
-        View view = inflater.inflate(R.layout.list_item_doingfragment, viewGroup, false);
+        View view = inflater.inflate(R.layout.list_item_doingfragment,
+                viewGroup, false);
         return new RVHolder(view, mContext);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull DoingFragmentRVA.RVHolder viewHolder, int position) {
+    public void onBindViewHolder(@NonNull DoingFragmentRVA.RVHolder viewHolder,
+                                 int position) {
         Project project = items.get(position);
         if (position > 0) {
             Project first = items.get(position - 1);
-            Project last = items.get(position);
-            if (first.getAddTime().equals(last.getAddTime())) {
-                viewHolder.bindViewHolder(last, true);
+            if (first.getAddTime().equals(project.getAddTime())) {
+                viewHolder.bindViewHolder(project, true);
             } else {
-                viewHolder.bindViewHolder(last, false);
+                viewHolder.bindViewHolder(project, false);
             }
-        } else {
+        }  else {
             viewHolder.bindViewHolder(project, false);
         }
     }
@@ -84,6 +88,8 @@ public class DoingFragmentRVA extends RecyclerView.Adapter<DoingFragmentRVA.RVHo
     public int getItemCount() {
         return items.size();
     }
+
+    public void SetShowDoneProjects() {SHOW_DONE_PROJECT = !SHOW_DONE_PROJECT;}
 
     class RVHolder extends RecyclerView.ViewHolder implements CheckBox.OnCheckedChangeListener{
         Project mProject;
@@ -111,7 +117,7 @@ public class DoingFragmentRVA extends RecyclerView.Adapter<DoingFragmentRVA.RVHo
                 @Override
                 public boolean onLongClick(View v) {
                     ProjectDialog dialog = ProjectDialog.getInstance(mContext);
-                    dialog.showDialog(mProject);
+                    dialog.showDialog(mProject, SHOW_DONE_PROJECT);
                     return true;
                 }
             });
@@ -193,6 +199,21 @@ public class DoingFragmentRVA extends RecyclerView.Adapter<DoingFragmentRVA.RVHo
                 SimpleDateFormat sdf2 = new SimpleDateFormat("HH:mm:ss");
                 doneDateStr = sdf1.format(d);
                 doneTimeStr = sdf2.format(d);
+        }
+
+        private void hideDoneProject(boolean showDoneProjects) {
+            RecyclerView.LayoutParams params =
+                    (RecyclerView.LayoutParams) itemView.getLayoutParams();
+            if (showDoneProjects) {
+                params.height = LinearLayout.LayoutParams.WRAP_CONTENT;
+                params.width = LinearLayout.LayoutParams.MATCH_PARENT;
+                itemView.setVisibility(View.VISIBLE);
+            } else {
+                itemView.setVisibility(View.GONE);
+                params.height = 0;
+                params.width = 0;
+            }
+            itemView.setLayoutParams(params);
         }
     }
 }

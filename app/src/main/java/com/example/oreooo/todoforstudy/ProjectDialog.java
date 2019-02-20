@@ -40,7 +40,7 @@ public class ProjectDialog {
         mContext = context;
     }
 
-    public void showDialog(){
+    public void showDialog(final boolean showDoneProjects){
         final AlertDialog.Builder mDialog = new AlertDialog.Builder(mContext);
         final View view = LayoutInflater.from(mContext)
                 .inflate(R.layout.dialog_add_plan, null);
@@ -63,7 +63,7 @@ public class ProjectDialog {
                                 String timeInput = sdf.format(d);
                                 Project p = new Project(timeInput, descriptionInput);
                                 ProjectLab.getInstance(mContext).addProject(p);
-                                interFace.update();
+                                interFace.update(showDoneProjects);
                             }
                         })
                 .show();
@@ -73,7 +73,7 @@ public class ProjectDialog {
      * 用来修改每个item
      * @param p
      */
-    public void showDialog(final Project p){
+    public void showDialog(final Project p, final boolean showDoneProjects){
         final AlertDialog.Builder mDialog = new AlertDialog.Builder(mContext);
         final View view = LayoutInflater.from(mContext)
                 .inflate(R.layout.dialog_add_plan, null);
@@ -94,7 +94,7 @@ public class ProjectDialog {
                                 }
                                 p.setThePlan(descriptionInput);
                                 ProjectLab.getInstance(mContext).updateProject(p);
-                                interFace.update();
+                                interFace.update(showDoneProjects);
                             }
                         })
                 .show();

@@ -3,4 +3,6 @@
     <string name="menu_add">Add a new Mission</string>
     <string name="fragment_time_hint">这是时间</string>
     <string name="add_project_hint">请输入描述</string>
+    <string name="hide_done_project">隐藏已完成项目</string>
+    <string name="show_done_project">显示已完成项目</string>
 </resources>

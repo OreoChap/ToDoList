@@ -7,6 +7,6 @@ package com.example.oreooo.todoforstudy;
 public interface Interface {
 
     interface Dialog{
-        void update();
+        void update(boolean b);
     }
 }

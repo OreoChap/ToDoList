@@ -81,11 +81,16 @@ public class ProjectLab {
         return projects;
     }
 
-    public List<Project> getProjectsByTime(String time) {
+    /**
+     *
+     * @return
+     */
+
+    public List<Project> getNotDoneProjects() {
         List<Project> projects = new ArrayList<>();
         ProjectCursorWrapper cursor = queryProjects(
-                "time = ? and done = ?",
-                new String[]{time, "1"}, null);
+                "done = ?",
+                new String[]{"2"}, "_id DESC");
         try {
             cursor.moveToFirst();
             while (!cursor.isAfterLast()) {

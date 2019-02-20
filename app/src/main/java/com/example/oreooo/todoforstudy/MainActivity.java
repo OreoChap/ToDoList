@@ -34,15 +34,14 @@ import java.util.List;
  */
 
 public class MainActivity extends AppCompatActivity {
-    EditText mEdit;
     ViewPager viewPager;
     TabLayout pagerTitle;
     List<Fragment> pagers = new ArrayList<>();
     DoingFragment doingFragment;
     DoneFragment doneFragment;
     private static final String TAG = "MainActivity";
-
     ProjectDialog mDialog;
+    private static boolean SHOW_DONE_PROJECT = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,20 +77,34 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_main_activity, menu);
+        MenuItem showDoneProjects = menu.findItem(R.id.menu_item_show_done_project);
+        if (SHOW_DONE_PROJECT) {
+            showDoneProjects.setTitle(R.string.hide_done_project);
+        } else {
+            showDoneProjects.setTitle(R.string.show_done_project);
+        }
         return true;
     }
 
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.add_mission:
+        switch (item.getItemId()) {
+            case R.id.menu_item_add_project:
                 if (null == mDialog) {
                     mDialog = ProjectDialog.getInstance(this);
                 }
-                mDialog.showDialog();
+                mDialog.showDialog(SHOW_DONE_PROJECT);
                 Log.d(TAG, "Dialog Created");
+                return true;
+            case R.id.menu_item_show_done_project:
+                SHOW_DONE_PROJECT = !SHOW_DONE_PROJECT;
+                doingFragment.showProjects(SHOW_DONE_PROJECT);
+                this.invalidateOptionsMenu();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
-        return super.onOptionsItemSelected(item);
     }
 
     private void initFragment() {
@@ -123,10 +136,12 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    /*
     private void doingFragmentUpdateUI() {
         doingFragment.upDateUI();
         Log.d(TAG, "DoingFragmentUpdateUI");
     }
+    */
 
     @Subscribe (threadMode = ThreadMode.MAIN)
     public void onMessageEvent(MessageEvent.DoneFragmentUpdateUIEvent event) {

@@ -48,7 +48,7 @@ public class DoingFragment extends Fragment implements Interface.Dialog{
         mContext = getActivity();
         rV = view.findViewById(R.id.doingFragmentRV);
         rV.setLayoutManager(new LinearLayoutManager(mContext));
-        upDateUI();
+        upDateUI(true);
         return view;
     }
 
@@ -59,8 +59,25 @@ public class DoingFragment extends Fragment implements Interface.Dialog{
         doingFragmentRVA.notifyDataSetChanged();
     }
 
+    public void upDateUI(boolean showDoneProjects) {
+        if (showDoneProjects) {
+            mList = ProjectLab.getInstance(mContext).getProjects();
+        } else {
+            mList = ProjectLab.getInstance(mContext).getNotDoneProjects();
+        }
+        doingFragmentRVA = new DoingFragmentRVA(mList, mContext);
+        rV.setAdapter(doingFragmentRVA);
+        doingFragmentRVA.notifyDataSetChanged();
+    }
+
+    // 显示或隐藏 Done项目
+    public void showProjects(boolean showDoneProjects) {
+        doingFragmentRVA.SetShowDoneProjects();
+        upDateUI(showDoneProjects);
+    }
+
     @Override
-    public void update() {
-        upDateUI();
+    public void update(boolean showDoneProjects) {
+        upDateUI(showDoneProjects);
     }
 }
