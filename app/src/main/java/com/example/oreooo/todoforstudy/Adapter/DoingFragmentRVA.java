@@ -99,7 +99,6 @@ public class DoingFragmentRVA extends RecyclerView.Adapter<DoingFragmentRVA.RVHo
         Context mContext;
         String doneTimeStr;
         String doneDateStr;
-        ProjectDialog dialog;
 
         RVHolder(View view, Context context){
             super(view);
@@ -201,6 +200,7 @@ public class DoingFragmentRVA extends RecyclerView.Adapter<DoingFragmentRVA.RVHo
                 doneTimeStr = sdf2.format(d);
         }
 
+        // 通过设置每个子项的宽高，隐藏 Done子项
         private void hideDoneProject(boolean showDoneProjects) {
             RecyclerView.LayoutParams params =
                     (RecyclerView.LayoutParams) itemView.getLayoutParams();

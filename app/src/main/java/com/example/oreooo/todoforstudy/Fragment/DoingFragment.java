@@ -52,13 +52,6 @@ public class DoingFragment extends Fragment implements Interface.Dialog{
         return view;
     }
 
-    public void upDateUI() {
-        mList = ProjectLab.getInstance(mContext).getProjects();
-        doingFragmentRVA = new DoingFragmentRVA(mList, mContext);
-        rV.setAdapter(doingFragmentRVA);
-        doingFragmentRVA.notifyDataSetChanged();
-    }
-
     public void upDateUI(boolean showDoneProjects) {
         if (showDoneProjects) {
             mList = ProjectLab.getInstance(mContext).getProjects();

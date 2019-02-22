@@ -38,7 +38,6 @@ public class ProjectLab {
                 .getWritableDatabase();
     }
 
-
     public void addProject(Project p) {
         ContentValues values = getContentValues(p);
         mDateBase.insert(NAME,
@@ -80,11 +79,6 @@ public class ProjectLab {
         }
         return projects;
     }
-
-    /**
-     *
-     * @return
-     */
 
     public List<Project> getNotDoneProjects() {
         List<Project> projects = new ArrayList<>();
