@@ -24,11 +24,11 @@ import java.util.List;
  */
 
 public class DoingFragment extends Fragment implements Interface.Dialog{
-    RecyclerView rV;
-    List<Project> mList = new ArrayList<>();
-    DoingFragmentRVA doingFragmentRVA;
-    Context mContext;
-    static DoingFragment mFragment = null;
+    private RecyclerView rV;
+
+    private DoingFragmentRVA doingFragmentRVA;
+    private Context mContext;
+    private static DoingFragment mFragment = null;
 
     public static DoingFragment getInstance(){
         if (null == mFragment) {
@@ -53,6 +53,7 @@ public class DoingFragment extends Fragment implements Interface.Dialog{
     }
 
     public void upDateUI(boolean showDoneProjects) {
+        List<Project> mList;
         if (showDoneProjects) {
             mList = ProjectLab.getInstance(mContext).getProjects();
         } else {

@@ -24,13 +24,11 @@ import java.util.List;
  */
 
 public class DoneFragment extends Fragment{
-    RecyclerView rV;
-    Context mContext;
-    TextView timeTxt;
-    String mDate;
-    DoneFragmentRVA doneFragmentRVA;
-
-    static DoneFragment mFragment = null;
+    private RecyclerView rV;
+    private Context mContext;
+    private TextView timeTxt;
+    private String mDate;
+    private static DoneFragment mFragment = null;
 
     public static DoneFragment getInstance(){
         if (null == mFragment) {
@@ -62,7 +60,7 @@ public class DoneFragment extends Fragment{
 
     private void update(String time) {
         List<Project> list = ProjectLab.getInstance(mContext).getProjectsByTodayDone(time);
-        doneFragmentRVA = new DoneFragmentRVA(list, mContext);
+        DoneFragmentRVA doneFragmentRVA = new DoneFragmentRVA(list);
         rV.setAdapter(doneFragmentRVA);
         doneFragmentRVA.notifyDataSetChanged();
         timeTxt.setText(time);
