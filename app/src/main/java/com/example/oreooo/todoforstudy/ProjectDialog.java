@@ -19,7 +19,6 @@ import java.util.Date;
  * @date 2019/1/21
  */
 public class ProjectDialog {
-
     private static ProjectDialog dialog = null;
     private Context mContext;
     private EditText mEdit;

@@ -21,29 +21,30 @@ import java.util.List;
 
 public class DoneFragmentRVA extends RecyclerView.Adapter<DoneFragmentRVA.RVHolder> {
     private Context mContext;
-    private List<Project> mlist;
+    private List<Project> mList;
 
-    public DoneFragmentRVA(List<Project> list, Context context) {
-        mContext = context;
-        mlist = list;
+    public DoneFragmentRVA(List<Project> list) {
+        this.mList = list;
     }
 
     @NonNull
     @Override
     public RVHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+        mContext = viewGroup.getContext();
         LayoutInflater inflater = LayoutInflater.from(mContext);
-        View view = inflater.inflate(R.layout.list_item_donefragment, viewGroup, false);
+        View view = inflater.inflate(R.layout.list_item_donefragment,
+                viewGroup, false);
         return new RVHolder(view);
     }
 
     @Override
     public void onBindViewHolder(RVHolder rVholder, int position) {
-        rVholder.bindViewHolder(mlist.get(position), position);
+        rVholder.bindViewHolder(mList.get(position), position);
     }
 
     @Override
     public int getItemCount() {
-        return mlist.size();
+        return mList.size();
     }
 
      class RVHolder extends RecyclerView.ViewHolder {

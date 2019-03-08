@@ -55,17 +55,17 @@ public class DoingFragmentRVA extends RecyclerView.Adapter<DoingFragmentRVA.RVHo
 
     public DoingFragmentRVA(List<Project> list, Context context){
         this.items = list;
-        this.mContext = context;
     }
 
     @NonNull
     @Override
     public DoingFragmentRVA.RVHolder onCreateViewHolder(@NonNull ViewGroup viewGroup,
                                                         int position) {
+        mContext = viewGroup.getContext();
         LayoutInflater inflater = LayoutInflater.from(mContext);
         View view = inflater.inflate(R.layout.list_item_doingfragment,
                 viewGroup, false);
-        return new RVHolder(view, mContext);
+        return new RVHolder(view);
     }
 
     @Override
@@ -96,16 +96,15 @@ public class DoingFragmentRVA extends RecyclerView.Adapter<DoingFragmentRVA.RVHo
         TextView timeTxt;
         TextView description;
         CheckBox button;
-        Context mContext;
+
         String doneTimeStr;
         String doneDateStr;
 
-        RVHolder(View view, Context context){
+        RVHolder(View view){
             super(view);
             timeTxt = (TextView) view.findViewById(R.id.rv_item_time);
             description = (TextView) view.findViewById(R.id.rv_item_description);
             button = (CheckBox) view.findViewById(R.id.rv_item_button);
-            mContext = context;
         }
 
         void bindViewHolder(Project project, boolean isSameTime) {

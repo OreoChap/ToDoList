@@ -34,13 +34,12 @@ import java.util.List;
  */
 
 public class MainActivity extends AppCompatActivity {
-    ViewPager viewPager;
-    TabLayout pagerTitle;
-    List<Fragment> pagers = new ArrayList<>();
-    DoingFragment doingFragment;
-    DoneFragment doneFragment;
+    private ViewPager viewPager;
+    private List<Fragment> pagers = new ArrayList<>();
+    private DoingFragment doingFragment;
+    private DoneFragment doneFragment;
     private static final String TAG = "MainActivity";
-    ProjectDialog mDialog;
+    private ProjectDialog mDialog;
     private static boolean SHOW_DONE_PROJECT = true;
 
     @Override
@@ -50,11 +49,6 @@ public class MainActivity extends AppCompatActivity {
         initFragment();
         initView();
         EventBus.getDefault().register(this);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
     }
 
     @Override
@@ -86,7 +80,6 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -116,7 +109,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void initView() {
         viewPager = findViewById(R.id.pager);
-        pagerTitle = findViewById(R.id.pager_title);
         viewPager.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
             @Override
             public Fragment getItem(int position) {
@@ -135,13 +127,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
-    /*
-    private void doingFragmentUpdateUI() {
-        doingFragment.upDateUI();
-        Log.d(TAG, "DoingFragmentUpdateUI");
-    }
-    */
 
     @Subscribe (threadMode = ThreadMode.MAIN)
     public void onMessageEvent(MessageEvent.DoneFragmentUpdateUIEvent event) {
