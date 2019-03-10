@@ -1,6 +1,7 @@
 package com.example.oreooo.todoforstudy.Adapter;
 
 import android.content.Context;
+import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -19,35 +20,21 @@ import java.util.List;
  * @date 2018/11/3
  */
 
-public class DoneFragmentRVA extends RecyclerView.Adapter<DoneFragmentRVA.RVHolder> {
+public class DoneFragmentRVA extends BaseRecyclerAdapter<DoneFragmentRVA.RVHolder> {
     private Context mContext;
-    private List<Project> mList;
+    private List<Project> mDate;
 
-    public DoneFragmentRVA(List<Project> list) {
-        this.mList = list;
-    }
-
-    @NonNull
-    @Override
-    public RVHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        mContext = viewGroup.getContext();
-        LayoutInflater inflater = LayoutInflater.from(mContext);
-        View view = inflater.inflate(R.layout.list_item_donefragment,
-                viewGroup, false);
-        return new RVHolder(view);
+    public DoneFragmentRVA(List<Project> list, @IdRes int layoutId) {
+        super(list, layoutId);
+        mDate = list;
     }
 
     @Override
-    public void onBindViewHolder(RVHolder rVholder, int position) {
-        rVholder.bindViewHolder(mList.get(position), position);
+    void bindHolder(RVHolder holder, int position) {
+        holder.bindViewHolder(mDate.get(position), position);
     }
 
-    @Override
-    public int getItemCount() {
-        return mList.size();
-    }
-
-     class RVHolder extends RecyclerView.ViewHolder {
+     class RVHolder extends BaseViewHolder {
         TextView mTxtDescription;
         Project mProject;
 

@@ -20,7 +20,7 @@ import static com.example.oreooo.todoforstudy.Date.ProjectsBaseHelper.ProjectDnS
 
 public class ProjectLab {
     private SQLiteDatabase mDateBase;
-    private static ProjectLab mProjectLab = null;
+    private static ProjectLab mProjectLab;
 
     public static ProjectLab getInstance(Context context) {
         if (mProjectLab == null) {
