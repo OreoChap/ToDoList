@@ -14,36 +14,38 @@ import java.util.List;
  * @author Oreo https://github.com/OreoChap
  * @date 2019/3/3
  */
-public abstract class BaseRecyclerAdapter<S extends BaseViewHolder> extends RecyclerView.Adapter<S>{
-
+public abstract class BaseRecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder>{
     private Context mContext;
-    private List mDate;
+    private List mDatas;
     private int mLayout;
 
+    //传入数据、viewHolder 的layoutID
     public BaseRecyclerAdapter(List list, @IdRes int layoutId){
-        this.mDate = list;
+        this.mDatas = list;
         this.mLayout = layoutId;
     }
 
     @Override
     public int getItemCount() {
-        return mDate.size();
+        return mDatas.size();
     }
 
-    abstract void bindHolder(S holder, int position);
+
 
     @Override
-    public S onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public BaseViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         mContext = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(mContext);
         View view = inflater.inflate(mLayout,
                 parent, false);
-        S viewHolder = (S) new BaseViewHolder(view);
+        BaseViewHolder viewHolder = new BaseViewHolder(view);
         return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull S holder, int position) {
+    public void onBindViewHolder(@NonNull BaseViewHolder holder, int position) {
         bindHolder(holder, position);
     }
+
+    protected abstract void bindHolder(BaseViewHolder holder, int position);
 }
