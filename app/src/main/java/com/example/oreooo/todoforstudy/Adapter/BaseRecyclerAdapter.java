@@ -14,6 +14,7 @@ import java.util.List;
  * @author Oreo https://github.com/OreoChap
  * @date 2019/3/3
  */
+// 参考鸿洋大神的文章https://blog.csdn.net/lmj623565791/article/details/51118836
 public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<BaseViewHolder>{
     private Context mContext;
     private List<T> mDatas;
