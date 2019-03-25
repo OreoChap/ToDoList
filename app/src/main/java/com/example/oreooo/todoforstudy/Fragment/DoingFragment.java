@@ -52,6 +52,7 @@ public class DoingFragment extends Fragment implements Interface.Dialog{
         return view;
     }
 
+    //ToDo 简化DoingFragmentRVA
     public void upDateUI(boolean showDoneProjects) {
         List<Project> mList;
         if (showDoneProjects) {

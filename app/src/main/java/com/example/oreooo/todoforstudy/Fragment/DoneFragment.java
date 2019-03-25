@@ -2,6 +2,7 @@ package com.example.oreooo.todoforstudy.Fragment;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -9,7 +10,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import com.example.oreooo.todoforstudy.Adapter.DoneFragmentRVA;
+
+import com.example.oreooo.todoforstudy.Adapter.BaseRecyclerAdapter;
+import com.example.oreooo.todoforstudy.Adapter.BaseViewHolder;
 import com.example.oreooo.todoforstudy.Date.ProjectLab;
 import com.example.oreooo.todoforstudy.R;
 import com.example.oreooo.todoforstudy.entity.Project;
@@ -60,9 +63,15 @@ public class DoneFragment extends Fragment{
 
     private void update(String time) {
         List<Project> list = ProjectLab.getInstance(mContext).getProjectsByTodayDone(time);
-        DoneFragmentRVA doneFragmentRVA = new DoneFragmentRVA(list);
-        rV.setAdapter(doneFragmentRVA);
-        doneFragmentRVA.notifyDataSetChanged();
+        rV.setAdapter(new BaseRecyclerAdapter<Project>(mContext, list, R.id.recycler_doneFragment) {
+            @Override
+            public void bindHolder(BaseViewHolder holder, Project project) {
+                TextView textView = (TextView)holder.getView(R.id.txt_description);
+                String done = String.valueOf(holder.getPosition() + 1) + ". " + project.getThePlan();
+                textView.setText(done);
+            }
+
+        });
         timeTxt.setText(time);
     }
 
