@@ -13,12 +13,11 @@ import java.util.List;
  * @author Oreo https://github.com/OreoChap
  * @date 2019/3/3
  */
-public class BaseViewHolder extends RecyclerView.ViewHolder {
+public final class BaseViewHolder extends RecyclerView.ViewHolder {
 
     private SparseArray<View> mViews;
     private Context mContext;
     private View mView;
-    private int mLayoutId;
 
     public BaseViewHolder(Context context, View itemView){
         super(itemView);
