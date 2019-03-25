@@ -12,9 +12,9 @@ import android.view.ViewGroup;
 import com.example.oreooo.todoforstudy.Adapter.DoingFragmentRVA;
 import com.example.oreooo.todoforstudy.Date.ProjectLab;
 import com.example.oreooo.todoforstudy.Interface;
-import com.example.oreooo.todoforstudy.entity.Project;
 import com.example.oreooo.todoforstudy.R;
-import java.util.ArrayList;
+import com.example.oreooo.todoforstudy.entity.Project;
+
 import java.util.List;
 
 /**

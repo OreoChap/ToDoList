@@ -5,7 +5,9 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.CursorWrapper;
 import android.database.sqlite.SQLiteDatabase;
+
 import com.example.oreooo.todoforstudy.entity.Project;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -119,7 +121,7 @@ public class ProjectLab {
         values.put(UUID, project.getUuid().toString());
         values.put(ADDTIME, project.getAddTime());
         values.put(DESCRIPTION, project.getThePlan());
-        values.put(DONE, project.getDone().toString());
+        values.put(DONE, project.getDone() + "");
         values.put(DONETIME, project.getDoneTime());
         values.put(DONEDATE, project.getDoneDate());
         return values;
@@ -147,12 +149,8 @@ public class ProjectLab {
             String doneDate = getString(getColumnIndex(DONEDATE));
             Integer done = getInt(getColumnIndex(DONE));
 
-            Project p = new Project(java.util.UUID.fromString(uuidString));
-            p.setAddTime(addTime);
-            p.setThePlan(description);
-            p.setDoneTime(doneTime);
-            p.setDoneDate(doneDate);
-            p.setDone(done);
+            Project p = new Project(addTime, description, java.util.UUID.fromString(uuidString),
+                    doneTime, doneDate, done);
 
             return p;
         }

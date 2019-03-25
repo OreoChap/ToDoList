@@ -1,30 +1,23 @@
 package com.example.oreooo.todoforstudy;
 
-import android.content.DialogInterface;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.EditText;
-import com.example.oreooo.todoforstudy.Date.ProjectLab;
+
 import com.example.oreooo.todoforstudy.Fragment.DoingFragment;
 import com.example.oreooo.todoforstudy.Fragment.DoneFragment;
-import com.example.oreooo.todoforstudy.entity.Project;
+
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
-import java.text.SimpleDateFormat;
+
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
