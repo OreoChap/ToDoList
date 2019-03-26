@@ -19,7 +19,4 @@ public class BaseViewHolder extends RecyclerView.ViewHolder {
         mViews = new SparseArray<>();
     }
 
-    //
-    public static BaseViewHolder get()
-
 }
