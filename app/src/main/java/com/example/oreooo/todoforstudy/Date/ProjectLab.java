@@ -24,6 +24,8 @@ public class ProjectLab {
     private SQLiteDatabase mDateBase;
     private static ProjectLab mProjectLab;
 
+
+    //todo 出现Bug，报错并推出
     public static ProjectLab getInstance(Context context) {
         if (mProjectLab == null) {
             synchronized (ProjectLab.class) {
