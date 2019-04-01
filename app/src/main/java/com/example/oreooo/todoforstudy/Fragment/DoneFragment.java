@@ -10,8 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.oreooo.todoforstudy.Adapter.BaseRecyclerAdapter;
-import com.example.oreooo.todoforstudy.Adapter.BaseViewHolder;
+import com.example.oreooo.todoforstudy.Adapter.DoneFragmentRVA;
 import com.example.oreooo.todoforstudy.Date.ProjectLab;
 import com.example.oreooo.todoforstudy.R;
 import com.example.oreooo.todoforstudy.entity.Project;
@@ -63,7 +62,12 @@ public class DoneFragment extends Fragment{
 
     private void update(String time) {
         List<Project> list = ProjectLab.getInstance(mContext).getProjectsByTodayDone(time);
-        rV.setAdapter(new BaseRecyclerAdapter<Project>(mContext, list, R.id.recycler_doneFragment) {
+        rV.setAdapter(new DoneFragmentRVA(mContext, list, R.id.recycler_doneFragment, null));
+        timeTxt.setText(time);
+    }
+
+    /*
+    new BaseRecyclerAdapter<Project>(mContext, list, R.id.recycler_doneFragment) {
             @Override
             public void bindHolder(BaseViewHolder holder, Project project) {
                 TextView textView = (TextView)holder.getView(R.id.txt_description);
@@ -71,9 +75,8 @@ public class DoneFragment extends Fragment{
                 textView.setText(done);
             }
 
-        });
-        timeTxt.setText(time);
-    }
+        }
+     */
 
     public void checkSysTime() {
         Date d = new Date();
