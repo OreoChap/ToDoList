@@ -22,6 +22,8 @@ public class ProjectLab {
     private SQLiteDatabase mDateBase;
     private static ProjectLab mProjectLab;
 
+
+    //todo 出现Bug，报错并推出
     public static ProjectLab getInstance(Context context) {
         if (mProjectLab == null) {
             synchronized (ProjectLab.class) {
@@ -119,7 +121,7 @@ public class ProjectLab {
         values.put(UUID, project.getUuid().toString());
         values.put(ADDTIME, project.getAddTime());
         values.put(DESCRIPTION, project.getThePlan());
-        values.put(DONE, project.getDone().toString());
+        values.put(DONE, project.getDone());
         values.put(DONETIME, project.getDoneTime());
         values.put(DONEDATE, project.getDoneDate());
         return values;
@@ -147,12 +149,8 @@ public class ProjectLab {
             String doneDate = getString(getColumnIndex(DONEDATE));
             Integer done = getInt(getColumnIndex(DONE));
 
-            Project p = new Project(java.util.UUID.fromString(uuidString));
-            p.setAddTime(addTime);
-            p.setThePlan(description);
-            p.setDoneTime(doneTime);
-            p.setDoneDate(doneDate);
-            p.setDone(done);
+            Project p = new Project(addTime, description, java.util.UUID.fromString(uuidString),
+                    doneTime, doneDate, done);
 
             return p;
         }

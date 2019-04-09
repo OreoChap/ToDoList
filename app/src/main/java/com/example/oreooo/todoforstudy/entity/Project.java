@@ -2,39 +2,30 @@ package com.example.oreooo.todoforstudy.entity;
 
 import java.util.UUID;
 
-/**
- * https://github.com/OreoChap
- * @author Oreo
- * @date 2018/11/3
- */
-
 public class Project {
-    private UUID uuid;
     private String addTime;
     private String thePlan;
-    private Integer done;
+    private UUID uuid;
     private String doneTime;
     private String doneDate;
+    private int done;
 
-    public Project() {
-        this(UUID.randomUUID());
-    }
-
-    public Project(UUID id) {
-        uuid = id;
-    }
-
-    public Project(String addTime, String description) {
-        this.uuid = UUID.randomUUID();
+    public Project(String addTime, String thePlan, UUID uuid, String doneTime, String doneDate, int done) {
         this.addTime = addTime;
-        this.thePlan = description;
-        this.done = 2; // 2表示未完成, 1表示完成
+        this.thePlan = thePlan;
+        this.uuid = UUID.randomUUID();
+        this.doneTime = doneTime;
+        this.doneDate = doneDate;
+        this.done = done;
+    }
+
+    public Project(String addTime, String thePlan) {
+        this.addTime = addTime;
+        this.thePlan = thePlan;
+        this.uuid = UUID.randomUUID();
         this.doneTime = "0";
         this.doneDate = "0";
-    }
-
-    public UUID getUuid() {
-        return uuid;
+        this.done = 2;
     }
 
     public String getAddTime() {
@@ -53,12 +44,12 @@ public class Project {
         this.thePlan = thePlan;
     }
 
-    public Integer getDone() {
-        return done;
+    public UUID getUuid() {
+        return uuid;
     }
 
-    public void setDone(Integer done) {
-        this.done = done;
+    public void setUuid(UUID uuid) {
+        this.uuid = uuid;
     }
 
     public String getDoneTime() {
@@ -75,5 +66,13 @@ public class Project {
 
     public void setDoneDate(String doneDate) {
         this.doneDate = doneDate;
+    }
+
+    public int getDone() {
+        return done;
+    }
+
+    public void setDone(int done) {
+        this.done = done;
     }
 }
