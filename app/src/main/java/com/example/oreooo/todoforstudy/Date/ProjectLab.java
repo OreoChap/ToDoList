@@ -5,7 +5,9 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.CursorWrapper;
 import android.database.sqlite.SQLiteDatabase;
+
 import com.example.oreooo.todoforstudy.entity.Project;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -22,8 +24,6 @@ public class ProjectLab {
     private SQLiteDatabase mDateBase;
     private static ProjectLab mProjectLab;
 
-
-    //todo 出现Bug，报错并推出
     public static ProjectLab getInstance(Context context) {
         if (mProjectLab == null) {
             synchronized (ProjectLab.class) {
@@ -49,6 +49,7 @@ public class ProjectLab {
     public void updateProject(Project p) {
         String uuidString = p.getUuid().toString();
         ContentValues values = getContentValues(p);
+
         mDateBase.update(NAME, values, UUID + " =?", new String[] { uuidString });
     }
 

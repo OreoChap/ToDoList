@@ -162,8 +162,7 @@ public class DoingFragmentRVA extends RecyclerView.Adapter<DoingFragmentRVA.RVHo
             checkedChange(isDone);
             mProject.setDone(isDone);
             ProjectLab.getInstance(mContext).updateProject(mProject);
-            EventBus.getDefault().post
-                    (new MessageEvent.DoneFragmentUpdateUIEvent("Send DoneFragmentUpdateUI Event"));
+            EventBus.getDefault().post(new MessageEvent.DoneFragmentUpdateUIEvent("Send DoneFragmentUpdateUI Event"));
         }
 
         private void checkedChange(int isDone) {

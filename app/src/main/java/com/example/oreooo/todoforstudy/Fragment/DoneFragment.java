@@ -53,6 +53,7 @@ public class DoneFragment extends Fragment{
         rV.setLayoutManager(new LinearLayoutManager(mContext));
         checkSysTime();
         updateUI();
+        // todo 这里开始报错
         return view;
     }
 
