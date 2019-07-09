@@ -143,13 +143,13 @@ public class DoingFragmentRVA extends RecyclerView.Adapter<DoingFragmentRVA.RVHo
                         .setPositiveButton("取消", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                compoundButton.setChecked(!changeTo);
+                                compoundButton.setChecked(true);
                             }
                         })
                         .setOnCancelListener(new DialogInterface.OnCancelListener() {
                             @Override
                             public void onCancel(DialogInterface dialogInterface) {
-                                compoundButton.setChecked(!changeTo);
+                                compoundButton.setChecked(true);
                             }
                         })
                         .show();

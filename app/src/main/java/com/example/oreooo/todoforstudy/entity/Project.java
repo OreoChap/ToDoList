@@ -8,9 +8,9 @@ public class Project {
     private UUID uuid;
     private String doneTime;
     private String doneDate;
-    private int done;
+    private Integer done;
 
-    public Project(String addTime, String thePlan, UUID uuid, String doneTime, String doneDate, int done) {
+    public Project(String addTime, String thePlan, UUID uuid, String doneTime, String doneDate, Integer done) {
         this.addTime = addTime;
         this.thePlan = thePlan;
         this.uuid = UUID.randomUUID();
@@ -19,6 +19,7 @@ public class Project {
         this.done = done;
     }
 
+    // done：2为未完成，1为完成
     public Project(String addTime, String thePlan) {
         this.addTime = addTime;
         this.thePlan = thePlan;
@@ -68,11 +69,11 @@ public class Project {
         this.doneDate = doneDate;
     }
 
-    public int getDone() {
+    public Integer getDone() {
         return done;
     }
 
-    public void setDone(int done) {
+    public void setDone(Integer done) {
         this.done = done;
     }
 }
