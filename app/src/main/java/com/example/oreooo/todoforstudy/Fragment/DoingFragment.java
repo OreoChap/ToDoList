@@ -13,7 +13,8 @@ import com.example.oreooo.todoforstudy.Adapter.DoingFragmentRVA;
 import com.example.oreooo.todoforstudy.Date.ProjectLab;
 import com.example.oreooo.todoforstudy.Interface;
 import com.example.oreooo.todoforstudy.R;
-import com.example.oreooo.todoforstudy.entity.Project;
+import com.example.oreooo.todoforstudy.Test.LitepalHelper;
+import com.example.oreooo.todoforstudy.Test.Project;
 
 import java.util.List;
 
@@ -52,13 +53,12 @@ public class DoingFragment extends Fragment implements Interface.Dialog{
         return view;
     }
 
-    //ToDo 简化DoingFragmentRVA
     public void upDateUI(boolean showDoneProjects) {
         List<Project> mList;
         if (showDoneProjects) {
-            mList = ProjectLab.getInstance(mContext).getProjects();
+            mList = LitepalHelper.getInstance().getAllProject();
         } else {
-            mList = ProjectLab.getInstance(mContext).getNotDoneProjects();
+            mList = LitepalHelper.getInstance().getNotDoneProject();
         }
         doingFragmentRVA = new DoingFragmentRVA(mList, mContext);
         rV.setAdapter(doingFragmentRVA);

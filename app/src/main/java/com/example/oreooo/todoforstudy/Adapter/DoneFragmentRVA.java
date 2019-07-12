@@ -5,7 +5,7 @@ import android.support.annotation.Nullable;
 import android.widget.TextView;
 
 import com.example.oreooo.todoforstudy.R;
-import com.example.oreooo.todoforstudy.entity.Project;
+import com.example.oreooo.todoforstudy.Test.Project;
 import com.oreooo.library.ListBase.BaseRecyclerAdapter;
 import com.oreooo.library.ListBase.BaseViewHolder;
 

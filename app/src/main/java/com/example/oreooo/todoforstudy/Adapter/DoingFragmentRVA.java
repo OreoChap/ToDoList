@@ -18,7 +18,8 @@ import com.example.oreooo.todoforstudy.Date.ProjectLab;
 import com.example.oreooo.todoforstudy.MessageEvent;
 import com.example.oreooo.todoforstudy.ProjectDialog;
 import com.example.oreooo.todoforstudy.R;
-import com.example.oreooo.todoforstudy.entity.Project;
+import com.example.oreooo.todoforstudy.Test.LitepalHelper;
+import com.example.oreooo.todoforstudy.Test.Project;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -161,7 +162,7 @@ public class DoingFragmentRVA extends RecyclerView.Adapter<DoingFragmentRVA.RVHo
         private void updateDoneFragmentUI(int isDone) {
             checkedChange(isDone);
             mProject.setDone(isDone);
-            ProjectLab.getInstance(mContext).updateProject(mProject);
+            LitepalHelper.getInstance().updateProject(mProject);
             EventBus.getDefault().post(new MessageEvent.DoneFragmentUpdateUIEvent("Send DoneFragmentUpdateUI Event"));
         }
 

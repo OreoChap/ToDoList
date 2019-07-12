@@ -11,13 +11,11 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.oreooo.todoforstudy.Adapter.DoneFragmentRVA;
-import com.example.oreooo.todoforstudy.Date.ProjectLab;
 import com.example.oreooo.todoforstudy.R;
-import com.example.oreooo.todoforstudy.entity.Project;
+import com.example.oreooo.todoforstudy.Test.LitepalHelper;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 
 /**
  * https://github.com/OreoChap
@@ -53,7 +51,6 @@ public class DoneFragment extends Fragment{
         rV.setLayoutManager(new LinearLayoutManager(mContext));
         checkSysTime();
         updateUI();
-        // todo 这里开始报错
         return view;
     }
 
@@ -62,22 +59,9 @@ public class DoneFragment extends Fragment{
     }
 
     private void update(String time) {
-        List<Project> list = ProjectLab.getInstance(mContext).getProjectsByTodayDone(time);
-        rV.setAdapter(new DoneFragmentRVA(mContext, list, R.id.recycler_doneFragment, null));
+        rV.setAdapter(new DoneFragmentRVA(mContext, LitepalHelper.getInstance().getDoneProjectsByToday(time), R.id.recycler_doneFragment, null));
         timeTxt.setText(time);
     }
-
-    /*
-    new BaseRecyclerAdapter<Project>(mContext, list, R.id.recycler_doneFragment) {
-            @Override
-            public void bindHolder(BaseViewHolder holder, Project project) {
-                TextView textView = (TextView)holder.getView(R.id.txt_description);
-                String done = String.valueOf(holder.getPosition() + 1) + ". " + project.getThePlan();
-                textView.setText(done);
-            }
-
-        }
-     */
 
     public void checkSysTime() {
         Date d = new Date();

@@ -9,7 +9,8 @@ import android.widget.EditText;
 
 import com.example.oreooo.todoforstudy.Date.ProjectLab;
 import com.example.oreooo.todoforstudy.Fragment.DoingFragment;
-import com.example.oreooo.todoforstudy.entity.Project;
+import com.example.oreooo.todoforstudy.Test.LitepalHelper;
+import com.example.oreooo.todoforstudy.Test.Project;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -61,7 +62,7 @@ public class ProjectDialog {
                                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                                 String timeInput = sdf.format(d);
                                 Project p = new Project(timeInput, descriptionInput);
-                                ProjectLab.getInstance(mContext).addProject(p);
+                                LitepalHelper.getInstance().addProject(p);
                                 interFace.update(showDoneProjects);
                             }
                         })
@@ -92,7 +93,7 @@ public class ProjectDialog {
                                     return;
                                 }
                                 p.setThePlan(descriptionInput);
-                                ProjectLab.getInstance(mContext).updateProject(p);
+                                LitepalHelper.getInstance().updateProject(p);
                                 interFace.update(showDoneProjects);
                             }
                         })
