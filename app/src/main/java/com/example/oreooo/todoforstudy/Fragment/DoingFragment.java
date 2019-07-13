@@ -10,11 +10,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.example.oreooo.todoforstudy.Adapter.DoingFragmentRVA;
-import com.example.oreooo.todoforstudy.Date.ProjectLab;
 import com.example.oreooo.todoforstudy.Interface;
 import com.example.oreooo.todoforstudy.R;
-import com.example.oreooo.todoforstudy.Test.LitepalHelper;
-import com.example.oreooo.todoforstudy.Test.Project;
+import com.example.oreooo.todoforstudy.LItePalDB.LitePalHelper;
+import com.example.oreooo.todoforstudy.LItePalDB.Project;
 
 import java.util.List;
 
@@ -56,9 +55,9 @@ public class DoingFragment extends Fragment implements Interface.Dialog{
     public void upDateUI(boolean showDoneProjects) {
         List<Project> mList;
         if (showDoneProjects) {
-            mList = LitepalHelper.getInstance().getAllProject();
+            mList = LitePalHelper.getInstance().getAllProject();
         } else {
-            mList = LitepalHelper.getInstance().getNotDoneProject();
+            mList = LitePalHelper.getInstance().getNotDoneProject();
         }
         doingFragmentRVA = new DoingFragmentRVA(mList, mContext);
         rV.setAdapter(doingFragmentRVA);

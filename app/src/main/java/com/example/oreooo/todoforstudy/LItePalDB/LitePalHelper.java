@@ -1,4 +1,4 @@
-package com.example.oreooo.todoforstudy.Test;
+package com.example.oreooo.todoforstudy.LItePalDB;
 
 import org.litepal.LitePal;
 
@@ -6,14 +6,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class LitepalHelper {
+public class LitePalHelper {
 
-    public static LitepalHelper getInstance() {
+    public static LitePalHelper getInstance() {
         return LitepalHelperHolder.Instance;
     }
 
     private static class LitepalHelperHolder {
-        private static LitepalHelper Instance = new LitepalHelper();
+        private static LitePalHelper Instance = new LitePalHelper();
     }
 
 //    public Project getProject (Project project) {
@@ -38,7 +38,7 @@ public class LitepalHelper {
 
     public List<Project> getNotDoneProject () {
         List data = new ArrayList<>();
-        data = LitePal.where("done = ?", "2")
+        data = LitePal.where("done = ?", "false")
                 .order("doneTime DESC")
                 .find(Project.class);
         return data;

@@ -1,12 +1,11 @@
-package com.example.oreooo.todoforstudy.Date;
+package com.example.oreooo.todoforstudy.SQLiteDB;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.widget.Toast;
 
-import static com.example.oreooo.todoforstudy.Date.ProjectsBaseHelper.ProjectDnSchema.ProjectTable.*;
-import static com.example.oreooo.todoforstudy.Date.ProjectsBaseHelper.ProjectDnSchema.ProjectTable.Cols.*;
+import static com.example.oreooo.todoforstudy.SQLiteDB.ProjectsBaseHelper.ProjectDnSchema.ProjectTable.*;
+import static com.example.oreooo.todoforstudy.SQLiteDB.ProjectsBaseHelper.ProjectDnSchema.ProjectTable.Cols.*;
 
 /**
  * https://github.com/OreoChap

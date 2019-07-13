@@ -14,12 +14,12 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import com.example.oreooo.todoforstudy.Date.ProjectLab;
+
 import com.example.oreooo.todoforstudy.MessageEvent;
 import com.example.oreooo.todoforstudy.ProjectDialog;
 import com.example.oreooo.todoforstudy.R;
-import com.example.oreooo.todoforstudy.Test.LitepalHelper;
-import com.example.oreooo.todoforstudy.Test.Project;
+import com.example.oreooo.todoforstudy.LItePalDB.LitePalHelper;
+import com.example.oreooo.todoforstudy.LItePalDB.Project;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -119,7 +119,7 @@ public class DoingFragmentRVA extends RecyclerView.Adapter<DoingFragmentRVA.RVHo
                 }
             });
             checkedChange(mProject.getDone());
-            button.setChecked(mProject.getDone() == 1);
+            button.setChecked(mProject.getDone());
 
             if (isSameTime) {
                 timeTxt.setVisibility(View.GONE);
@@ -131,14 +131,13 @@ public class DoingFragmentRVA extends RecyclerView.Adapter<DoingFragmentRVA.RVHo
 
         @Override
         public void onCheckedChanged(final CompoundButton compoundButton, final boolean changeTo) {
-            final int isDone = changeTo ? 1:2;
-            if (mProject.getDone() == 1 && !changeTo ) {
+            if (mProject.getDone() && !changeTo ) {
                 AlertDialog.Builder dialog= new AlertDialog.Builder(mContext);
                 dialog.setTitle("是否更改为未完成")
                         .setNegativeButton("确定", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                updateDoneFragmentUI(isDone);
+                                updateDoneFragmentUI(changeTo);
                             }
                         })
                         .setPositiveButton("取消", new DialogInterface.OnClickListener() {
@@ -154,38 +153,34 @@ public class DoingFragmentRVA extends RecyclerView.Adapter<DoingFragmentRVA.RVHo
                             }
                         })
                         .show();
-            } else if (mProject.getDone() == 2){
-                updateDoneFragmentUI(isDone);
+            } else if (!mProject.getDone()){
+                updateDoneFragmentUI(changeTo);
             }
         }
 
-        private void updateDoneFragmentUI(int isDone) {
+        private void updateDoneFragmentUI(boolean isDone) {
             checkedChange(isDone);
             mProject.setDone(isDone);
-            LitepalHelper.getInstance().updateProject(mProject);
+            LitePalHelper.getInstance().updateProject(mProject);
             EventBus.getDefault().post(new MessageEvent.DoneFragmentUpdateUIEvent("Send DoneFragmentUpdateUI Event"));
         }
 
-        private void checkedChange(int isDone) {
-            switch (IsDone.getDone(isDone)){
-                case NOT_DONE:
-                    description.getPaint().setFlags(0);
-                    description.setTextColor(mContext.getResources()
-                            .getColor(R.color.rv_item_black));
-                    mProject.setDoneTime("0");
-                    mProject.setDoneDate("0");
-                    Log.d(TAG, "Project not done");
-                    break;
-
-                case IS_DONE:
-                    description.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
-                    description.setTextColor(mContext.getResources()
-                            .getColor(R.color.rv_item_gray));
-                    checkDate();
-                    mProject.setDoneTime(doneTimeStr);
-                    mProject.setDoneDate(doneDateStr);
-                    Log.d(TAG, "Project done");
-                    break;
+        private void checkedChange(boolean isDone) {
+            if (isDone) {
+                description.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
+                description.setTextColor(mContext.getResources()
+                        .getColor(R.color.rv_item_gray));
+                checkDate();
+                mProject.setDoneTime(doneTimeStr);
+                mProject.setDoneDate(doneDateStr);
+                Log.d(TAG, "Project done");
+            } else {
+                description.getPaint().setFlags(0);
+                description.setTextColor(mContext.getResources()
+                        .getColor(R.color.rv_item_black));
+                mProject.setDoneTime("0");
+                mProject.setDoneDate("0");
+                Log.d(TAG, "Project not done");
             }
         }
 

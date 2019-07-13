@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.example.oreooo.todoforstudy.Adapter.DoneFragmentRVA;
 import com.example.oreooo.todoforstudy.R;
-import com.example.oreooo.todoforstudy.Test.LitepalHelper;
+import com.example.oreooo.todoforstudy.LItePalDB.LitePalHelper;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -59,7 +59,8 @@ public class DoneFragment extends Fragment{
     }
 
     private void update(String time) {
-        rV.setAdapter(new DoneFragmentRVA(mContext, LitepalHelper.getInstance().getDoneProjectsByToday(time), R.id.recycler_doneFragment, null));
+        rV.setAdapter(new DoneFragmentRVA(mContext, LitePalHelper.getInstance().getDoneProjectsByToday(time),
+                R.layout.list_item_donefragment, null));
         timeTxt.setText(time);
     }
 
