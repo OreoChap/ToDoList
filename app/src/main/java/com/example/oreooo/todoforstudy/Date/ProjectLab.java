@@ -121,7 +121,7 @@ public class ProjectLab {
         values.put(UUID, project.getUuid().toString());
         values.put(ADDTIME, project.getAddTime());
         values.put(DESCRIPTION, project.getThePlan());
-        values.put(DONE, project.getDone());
+        values.put(DONE, project.getDone().toString());
         values.put(DONETIME, project.getDoneTime());
         values.put(DONEDATE, project.getDoneDate());
         return values;
