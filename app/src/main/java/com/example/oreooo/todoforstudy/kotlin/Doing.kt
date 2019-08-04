@@ -1,8 +1,4 @@
-package com.example.oreooo.todoforstudy.Fragment
-
-import android.os.Bundle
-import android.view.View
-import com.oreooo.library.MvpBase.BaseFragment
+package com.example.oreooo.todoforstudy.kotlin
 
 class Doing private constructor()  {
 
