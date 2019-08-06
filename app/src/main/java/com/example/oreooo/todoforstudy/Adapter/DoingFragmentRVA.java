@@ -15,6 +15,7 @@ import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.oreooo.todoforstudy.MainActivity;
 import com.example.oreooo.todoforstudy.MessageEvent;
 import com.example.oreooo.todoforstudy.ProjectDialog;
 import com.example.oreooo.todoforstudy.R;
@@ -37,7 +38,6 @@ public class DoingFragmentRVA extends RecyclerView.Adapter<DoingFragmentRVA.RVHo
     private Context mContext;
     private List<Project> items;
     private static final String TAG = "DoingFragmentRVA";
-    private static boolean SHOW_DONE_PROJECT = true;
 
     public enum IsDone {
         IS_DONE(1), NOT_DONE(2);
@@ -88,8 +88,6 @@ public class DoingFragmentRVA extends RecyclerView.Adapter<DoingFragmentRVA.RVHo
         return items.size();
     }
 
-    public void SetShowDoneProjects() {SHOW_DONE_PROJECT = !SHOW_DONE_PROJECT;}
-
     class RVHolder extends RecyclerView.ViewHolder implements CheckBox.OnCheckedChangeListener{
         Project mProject;
         TextView timeTxt;
@@ -114,7 +112,7 @@ public class DoingFragmentRVA extends RecyclerView.Adapter<DoingFragmentRVA.RVHo
                 @Override
                 public boolean onLongClick(View v) {
                     ProjectDialog dialog = ProjectDialog.getInstance(mContext);
-                    dialog.showDialog(mProject, SHOW_DONE_PROJECT);
+                    dialog.showDialog(mProject, MainActivity.isShowDoneProject());
                     return true;
                 }
             });

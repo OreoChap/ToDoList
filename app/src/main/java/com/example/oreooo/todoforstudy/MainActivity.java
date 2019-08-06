@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private DoneFragment doneFragment;
     private static final String TAG = "MainActivity";
     private ProjectDialog mDialog;
-    private static boolean SHOW_DONE_PROJECT = true;
+    private volatile static boolean SHOW_DONE_PROJECT = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -128,5 +128,9 @@ public class MainActivity extends AppCompatActivity {
         doneFragment.updateUI();
         Log.d(TAG, event.message);
         Log.d(TAG, "DoneFragmentUpdateUI");
+    }
+
+    public static boolean isShowDoneProject() {
+        return SHOW_DONE_PROJECT;
     }
 }

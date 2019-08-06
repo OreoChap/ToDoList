@@ -16,18 +16,12 @@ public class LitePalHelper {
         private static LitePalHelper Instance = new LitePalHelper();
     }
 
-//    public Project getProject (Project project) {
-//        List data = new ArrayList<>();
-//        data = Arrays.asList(LitePal.findAll(Project.class).toArray());
-//
-//    }
-
     public void addProject (Project project) {
         project.save();
     }
 
     public void updateProject (Project project) {
-        project.updateAll();
+        project.updateAll("addTime=? and thePlan=?", project.getAddTime(), project.getThePlan());
     }
 
     public List<Project> getAllProject () {

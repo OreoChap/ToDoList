@@ -66,7 +66,6 @@ public class DoingFragment extends Fragment implements Interface.Dialog{
 
     // 显示或隐藏 Done项目
     public void showProjects(boolean showDoneProjects) {
-        doingFragmentRVA.SetShowDoneProjects();
         upDateUI(showDoneProjects);
     }
 
