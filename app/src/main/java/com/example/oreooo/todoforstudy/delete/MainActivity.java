@@ -1,4 +1,4 @@
-package com.example.oreooo.todoforstudy;
+package com.example.oreooo.todoforstudy.delete;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -12,6 +12,8 @@ import android.view.MenuItem;
 
 import com.example.oreooo.todoforstudy.Fragment.DoingFragment;
 import com.example.oreooo.todoforstudy.Fragment.DoneFragment;
+import com.example.oreooo.todoforstudy.ProjectDialog;
+import com.example.oreooo.todoforstudy.R;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -121,13 +123,6 @@ public class MainActivity extends AppCompatActivity {
                 return title[position];
             }
         });
-    }
-
-    @Subscribe (threadMode = ThreadMode.MAIN)
-    public void onMessageEvent(MessageEvent.DoneFragmentUpdateUIEvent event) {
-        doneFragment.updateUI();
-        Log.d(TAG, event.message);
-        Log.d(TAG, "DoneFragmentUpdateUI");
     }
 
     public static boolean isShowDoneProject() {

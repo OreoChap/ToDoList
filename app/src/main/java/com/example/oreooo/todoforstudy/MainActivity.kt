@@ -1,17 +1,12 @@
-package com.example.oreooo.todoforstudy.kotlin
+package com.example.oreooo.todoforstudy
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentPagerAdapter
-import android.support.v4.view.ViewPager
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import com.example.oreooo.todoforstudy.Fragment.DoingFragment
 import com.example.oreooo.todoforstudy.Fragment.DoneFragment
-import com.example.oreooo.todoforstudy.MessageEvent
-import com.example.oreooo.todoforstudy.ProjectDialog
-import com.example.oreooo.todoforstudy.R
 import com.oreooo.library.MvpBase.BaseActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import org.greenrobot.eventbus.EventBus
@@ -28,7 +23,6 @@ class MainActivity : BaseActivity() {
     private val doingFragment: DoingFragment = DoingFragment.getInstance()
     private var doneFragment: DoneFragment = DoneFragment.getInstance()
     private var mDialog: ProjectDialog = ProjectDialog.getInstance(this)
-    private var SHOW_DONE_PROJECT = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -100,5 +94,9 @@ class MainActivity : BaseActivity() {
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onMessageEvent(event: MessageEvent.DoneFragmentUpdateUIEvent) {
         doneFragment.updateUI()
+    }
+
+    companion object {
+        var SHOW_DONE_PROJECT = true
     }
 }

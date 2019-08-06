@@ -15,12 +15,12 @@ import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.oreooo.todoforstudy.MainActivity;
 import com.example.oreooo.todoforstudy.MessageEvent;
 import com.example.oreooo.todoforstudy.ProjectDialog;
 import com.example.oreooo.todoforstudy.R;
 import com.example.oreooo.todoforstudy.LItePalDB.LitePalHelper;
 import com.example.oreooo.todoforstudy.LItePalDB.Project;
+import com.example.oreooo.todoforstudy.MainActivity;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -112,7 +112,7 @@ public class DoingFragmentRVA extends RecyclerView.Adapter<DoingFragmentRVA.RVHo
                 @Override
                 public boolean onLongClick(View v) {
                     ProjectDialog dialog = ProjectDialog.getInstance(mContext);
-                    dialog.showDialog(mProject, MainActivity.isShowDoneProject());
+                    dialog.showDialog(mProject, MainActivity.Companion.getSHOW_DONE_PROJECT());
                     return true;
                 }
             });
