@@ -6,7 +6,7 @@ import android.support.v4.app.FragmentPagerAdapter
 import android.view.Menu
 import android.view.MenuItem
 import com.example.oreooo.todoforstudy.Fragment.DoingFragment
-import com.example.oreooo.todoforstudy.Fragment.DoneFragment
+import com.example.oreooo.todoforstudy.kotlin.DoneFrag
 import com.oreooo.library.MvpBase.BaseActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import org.greenrobot.eventbus.EventBus
@@ -21,7 +21,7 @@ import org.litepal.LitePal
 class MainActivity : BaseActivity() {
     private val pagers:MutableList<Fragment> = ArrayList<Fragment>()
     private val doingFragment: DoingFragment = DoingFragment.getInstance()
-    private var doneFragment: DoneFragment = DoneFragment.getInstance()
+    private var doneFragment: DoneFrag = DoneFrag.instance
     private var mDialog: ProjectDialog = ProjectDialog.getInstance(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
