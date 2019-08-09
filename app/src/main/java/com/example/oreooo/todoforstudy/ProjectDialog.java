@@ -7,9 +7,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 
-import com.example.oreooo.todoforstudy.Fragment.DoingFragment;
 import com.example.oreooo.todoforstudy.LItePalDB.LitePalHelper;
 import com.example.oreooo.todoforstudy.LItePalDB.Project;
+import com.example.oreooo.todoforstudy.Fragment.DoingFrag;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -22,7 +22,7 @@ public class ProjectDialog {
     private static ProjectDialog dialog = null;
     private Context mContext;
     private EditText mEdit;
-    private Interface.Dialog interFace = DoingFragment.getInstance();
+    private Interface.Dialog interFace = DoingFrag.Companion.getInstance();
 
     public static ProjectDialog getInstance(Context context) {
         if (null == dialog) {

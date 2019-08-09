@@ -5,9 +5,8 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentPagerAdapter
 import android.view.Menu
 import android.view.MenuItem
-import com.example.oreooo.todoforstudy.Fragment.DoingFragment
-import com.example.oreooo.todoforstudy.kotlin.DoingFrag
-import com.example.oreooo.todoforstudy.kotlin.DoneFrag
+import com.example.oreooo.todoforstudy.Fragment.DoingFrag
+import com.example.oreooo.todoforstudy.Fragment.DoneFrag
 import com.oreooo.library.MvpBase.BaseActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import org.greenrobot.eventbus.EventBus

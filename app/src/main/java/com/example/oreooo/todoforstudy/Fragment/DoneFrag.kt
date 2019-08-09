@@ -1,4 +1,4 @@
-package com.example.oreooo.todoforstudy.kotlin
+package com.example.oreooo.todoforstudy.Fragment
 
 import android.content.Context
 import android.os.Bundle
@@ -9,9 +9,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import com.example.oreooo.todoforstudy.Adapter.DoneFragmentRVA
+import com.example.oreooo.todoforstudy.Adapter.DoneFragRVA
 import com.example.oreooo.todoforstudy.LItePalDB.LitePalHelper
 import com.example.oreooo.todoforstudy.R
+import com.oreooo.library.ListBase.BaseRecyclerAdapter
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -42,9 +43,9 @@ class DoneFrag : Fragment() {
         update(mDate!!)
     }
 
-    private fun update(time:String) {
-        rV?.adapter = (DoneFragmentRVA(mContext, LitePalHelper.getInstance().getDoneProjectsByToday(time),
-                R.layout.list_item_donefragment, null))
+    private fun update(time: String) {
+        rV?.adapter = (DoneFragRVA(mContext!!, LitePalHelper.getInstance().getDoneProjectsByToday(time),
+                R.layout.list_item_donefragment, BaseRecyclerAdapter.OnViewHolderClickListener { _, _ -> }))
         timeTxt?.text = time
     }
 

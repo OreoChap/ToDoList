@@ -1,11 +1,9 @@
-package com.example.oreooo.todoforstudy.kotlin
+package com.example.oreooo.todoforstudy.Adapter
 
 import android.app.AlertDialog
 import android.content.Context
-import android.content.DialogInterface
 import android.graphics.Paint
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,7 +17,6 @@ import com.example.oreooo.todoforstudy.MainActivity
 import com.example.oreooo.todoforstudy.MessageEvent
 import com.example.oreooo.todoforstudy.ProjectDialog
 import com.example.oreooo.todoforstudy.R
-import com.example.oreooo.todoforstudy.kotlin.DoingFrag.Companion.instance
 import org.greenrobot.eventbus.EventBus
 import java.text.SimpleDateFormat
 import java.util.*
@@ -28,7 +25,6 @@ class DoingFragRVA(var list: List<Project>) : RecyclerView.Adapter<DoingFragRVA.
     val instance by lazy { this }
     private var mContext: Context? = null
     private var items: List<Project>? = null
-    private val TAG = "DoingFragmentRVA"
 
     init {
         items = list

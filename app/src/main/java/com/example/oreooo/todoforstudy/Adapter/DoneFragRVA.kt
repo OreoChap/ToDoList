@@ -1,4 +1,4 @@
-package com.example.oreooo.todoforstudy.kotlin
+package com.example.oreooo.todoforstudy.Adapter
 
 import android.content.Context
 import android.support.annotation.Nullable

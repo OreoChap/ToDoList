@@ -1,4 +1,4 @@
-package com.example.oreooo.todoforstudy.kotlin
+package com.example.oreooo.todoforstudy.Fragment
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -7,7 +7,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.oreooo.todoforstudy.Adapter.DoingFragmentRVA
+import com.example.oreooo.todoforstudy.Adapter.DoingFragRVA
 import com.example.oreooo.todoforstudy.Interface
 import com.example.oreooo.todoforstudy.LItePalDB.LitePalHelper
 import com.example.oreooo.todoforstudy.LItePalDB.Project
@@ -15,7 +15,7 @@ import com.example.oreooo.todoforstudy.R
 
 class DoingFrag : Fragment(), Interface.Dialog {
     private var rV: RecyclerView? = null
-    private var doingFragmentRVA: DoingFragmentRVA? = null
+    private var doingFragmentRVA: DoingFragRVA? = null
 
     companion object {
         val instance: DoingFrag by lazy(mode = LazyThreadSafetyMode.SYNCHRONIZED) {
@@ -38,7 +38,7 @@ class DoingFrag : Fragment(), Interface.Dialog {
         } else {
             mList = LitePalHelper.getInstance().notDoneProject
         }
-        doingFragmentRVA = DoingFragmentRVA(mList, context)
+        doingFragmentRVA = DoingFragRVA(mList)
         rV?.adapter = doingFragmentRVA
         doingFragmentRVA!!.notifyDataSetChanged()
     }
