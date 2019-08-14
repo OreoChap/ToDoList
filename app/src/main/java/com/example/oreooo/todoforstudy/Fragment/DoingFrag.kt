@@ -14,8 +14,8 @@ import com.example.oreooo.todoforstudy.LItePalDB.Project
 import com.example.oreooo.todoforstudy.R
 
 class DoingFrag : Fragment(), Interface.Dialog {
-    private var rV: RecyclerView? = null
-    private var doingFragmentRVA: DoingFragRVA? = null
+    private lateinit var rV: RecyclerView
+    private lateinit var doingFragmentRVA: DoingFragRVA
 
     companion object {
         val instance: DoingFrag by lazy(mode = LazyThreadSafetyMode.SYNCHRONIZED) {
@@ -26,12 +26,12 @@ class DoingFrag : Fragment(), Interface.Dialog {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_doing, container, false)
         rV = view.findViewById(R.id.doingFragmentRV)
-        rV?.layoutManager = LinearLayoutManager(context)
+        rV.layoutManager = LinearLayoutManager(context)
         upDateUI(true)
         return view
     }
 
-    fun upDateUI(showDoneProjects: Boolean) {
+    private fun upDateUI(showDoneProjects: Boolean) {
         val mList: List<Project>
         if (showDoneProjects) {
             mList = LitePalHelper.getInstance().allProject
@@ -39,8 +39,8 @@ class DoingFrag : Fragment(), Interface.Dialog {
             mList = LitePalHelper.getInstance().notDoneProject
         }
         doingFragmentRVA = DoingFragRVA(mList)
-        rV?.adapter = doingFragmentRVA
-        doingFragmentRVA!!.notifyDataSetChanged()
+        rV.adapter = doingFragmentRVA
+        doingFragmentRVA.notifyDataSetChanged()
     }
 
     // 显示或隐藏 Done项目
