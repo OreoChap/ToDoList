@@ -1,4 +1,6 @@
-package com.example.oreooo.todoforstudy.LItePalDB;
+package com.example.oreooo.todoforstudy.delete;
+
+import com.example.oreooo.todoforstudy.LItePalDB.Project;
 
 import org.litepal.LitePal;
 

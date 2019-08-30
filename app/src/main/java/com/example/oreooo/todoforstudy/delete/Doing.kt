@@ -1,4 +1,4 @@
-package com.example.oreooo.todoforstudy.kotlin
+package com.example.oreooo.todoforstudy.delete
 
 class Doing private constructor()  {
     companion object {

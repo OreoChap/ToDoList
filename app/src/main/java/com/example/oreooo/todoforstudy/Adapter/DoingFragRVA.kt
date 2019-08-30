@@ -80,7 +80,7 @@ class DoingFragRVA(var list: List<Project>) : RecyclerView.Adapter<DoingFragRVA.
             description.setText(project.thePlan)
             description.setOnLongClickListener(View.OnLongClickListener {
                 val dialog = ProjectDialog.getInstance(context)
-                dialog.showDialog(mProject, MainActivity.SHOW_DONE_PROJECT)
+                dialog.showDialog(project, MainActivity.SHOW_DONE_PROJECT)
                 true
             })
             checkedChange(project.done)
@@ -112,7 +112,7 @@ class DoingFragRVA(var list: List<Project>) : RecyclerView.Adapter<DoingFragRVA.
         private fun updateDoneFragmentUI(isDone: Boolean) {
             checkedChange(isDone)
             mProject?.done = isDone
-            LitePalHelper.getInstance().updateProject(mProject)
+            LitePalHelper.instance.updateProject(mProject!!)
             EventBus.getDefault().post(MessageEvent.DoneFragmentUpdateUIEvent("Send DoneFragmentUpdateUI Event"))
         }
 

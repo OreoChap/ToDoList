@@ -34,9 +34,9 @@ class DoingFrag : Fragment(), Interface.Dialog {
     private fun upDateUI(showDoneProjects: Boolean) {
         val mList: List<Project>
         if (showDoneProjects) {
-            mList = LitePalHelper.getInstance().allProject
+            mList = LitePalHelper.instance.allProject
         } else {
-            mList = LitePalHelper.getInstance().notDoneProject
+            mList = LitePalHelper.instance.notDoneProject
         }
         doingFragmentRVA = DoingFragRVA(mList)
         rV.adapter = doingFragmentRVA

@@ -44,7 +44,7 @@ class DoneFrag : Fragment() {
     }
 
     private fun update(time: String) {
-        rV.adapter = (DoneFragRVA(mContext!!, LitePalHelper.getInstance().getDoneProjectsByToday(time),
+        rV.adapter = (DoneFragRVA(mContext!!, LitePalHelper.instance.getDoneProjectsByToday(time),
                 R.layout.list_item_donefragment, BaseRecyclerAdapter.OnViewHolderClickListener { _, _ -> }))
         timeTxt.text = time
     }
